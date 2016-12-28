@@ -2,6 +2,8 @@
 __MAXOSX
 extension/src/*.js
 extension/src/*.js.map
+extension/vdv-*.zip
+extension/bin/*
 
 # Created by https://www.gitignore.io/api/node,
 
