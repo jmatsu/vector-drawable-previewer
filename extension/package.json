@@ -1,0 +1,20 @@
+{
+  "name": "vdv",
+  "description": "A Chrome Extension can show the vector drawable when you open it",
+  "version": "1.0.0",
+  "repository": "https://github.com/jmatsu/vdv",
+  "private": true,
+  "scripts": {
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "browserify": "mkdir bin; node_modules/.bin/browserify src/main.js > bin/main.js"
+  },
+  "dependencies": {
+    "es6-promise": "^3.0.2",
+    "es6-shim": "^0.33.3",
+    "browserify": "13.0.1"
+  },
+  "devDependencies": {
+    "typescript": "^2.1.4"
+  }
+}
