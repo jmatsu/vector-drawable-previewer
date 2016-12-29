@@ -4,6 +4,8 @@ extension/src/*.js
 extension/src/*.js.map
 extension/vdv-*.zip
 extension/bin/*
+extension/mapfiles/*
+!extension/mapfiles/.gitkeep
 
 # Created by https://www.gitignore.io/api/node,
 
