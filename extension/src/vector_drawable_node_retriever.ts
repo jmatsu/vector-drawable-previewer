@@ -10,13 +10,23 @@ class Impl {
     public node: any
 
     mayGetNode() {
-        const nodes = document.body.childNodes;
+        let nodes = document.body.childNodes;
 
-        if (nodes.length == 1) {
-            const node = nodes[0];
+        if (nodes.length > 0) {
+            let node = nodes[0];
 
             if (node.nodeName === "vector") {
                 this.node = node;
+            } else if (node.nodeName === "div" && node.attributes['id'].value === 'webkit-xml-viewer-source-xml') {
+                nodes = node.childNodes;
+
+                if (nodes.length == 1) {
+                    node = nodes[0];
+
+                    if (node.nodeName === "vector") {
+                        this.node = node;
+                    }
+                }
             }
         }
     }
@@ -25,7 +35,7 @@ class Impl {
         return new Promise((resolve, reject) => {
             this.mayGetNode();
 
-            if (this.node !== null) {
+            if (this.node !== null && this.node !== undefined) {
                 resolve(this.node);
             } else {
                 reject(new Error("Not vector node."));

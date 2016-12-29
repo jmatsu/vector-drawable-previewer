@@ -10,9 +10,11 @@ class Main {
         nodeRetriever.fetch().then((e) => {
             return converter.convert(e);
         }).then((svg) => {
+            document.body.childNodes[2].appendChild(svg);
             console.log('success');
         }).catch((err) => {
             console.log('failure');
+            console.log(err);
         });
     }
 }
