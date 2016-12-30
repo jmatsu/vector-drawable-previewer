@@ -1,8 +1,7 @@
 export namespace VectorNode {
     export const enum Type {
         Root = 1,
-        Path,
-        Rect
+        Path
     }
 
     export namespace Root {

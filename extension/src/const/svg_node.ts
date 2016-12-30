@@ -1,8 +1,8 @@
+// Only supported things are listed-up.
 export namespace SVGNode {
     export const enum Type {
         Root = 1,
-        Path,
-        Rect
+        Path
     }
 
     export namespace Root {
