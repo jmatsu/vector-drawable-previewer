@@ -1,0 +1,23 @@
+machine:
+  node:
+    version: 6.3.1
+
+dependency:
+  cache_directories:
+    - "~/$CIRCLE_PROJECT_REPONAME/extension/node_modules"
+  override:
+    - cd extension
+    - npm config set spin=false
+    - npm config set progress=false
+    - npm install
+
+test:
+  override:
+    - cd extension
+    - npm tsc
+    - npm broserify
+  post:
+    - mkdir -p $CIRCLE_TEST_REPORTS/bin
+    - cp extension/manifest.json $CIRCLE_TEST_REPORTS
+    - cp extension/bin/main.js $CIRCLE_TEST_REPORTS/bin
+    - (cd $CIRCLE_TEST_REPORTS; zip build-$CIRCLE_BUILD_NUM.zip manifest.json bin/main.js)
