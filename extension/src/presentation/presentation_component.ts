@@ -1,4 +1,4 @@
-import { Utility } from '../util/utility';
+import { Documents } from '../util/documents';
 import { Package } from './package_template';
 import { DirectPackage } from './direct/package';
 import { RawPackage } from './raw/package';
@@ -7,36 +7,28 @@ import { XmlViewerPackage } from './xmlviewer/package';
 
 export namespace PresentationComponent {
     export function getPackage(): Package {
-        if (Helper.isDirectMode()) {
+        const nodes = Documents.getRootNodeList();
+
+        if (isDirectMode(nodes)) {
             return new DirectPackage();
-        } else if (Helper.isRawMode()) {
+        } else if (isRawMode(nodes)) {
             return new RawPackage();
-        } else if (Helper.isXmlViewerMode()) {
+        } else if (isXmlViewerMode(nodes)) {
             return new XmlViewerPackage();
         } else {
             return new UnknownPackage();
         }
     }
-}
 
-namespace Helper {
-    function getRootNodes(): NodeList {
-        return (document.body || document).childNodes;
-    }
-
-    export function isDirectMode(): boolean {
-        const nodes = getRootNodes();
+    function isDirectMode(nodes: NodeList): boolean {
         return nodes.length === 1 && nodes[0].nodeName === 'vector';
     }
 
-    export function isRawMode(): boolean {
-        const nodes = getRootNodes();
+    function isRawMode(nodes: NodeList): boolean {
         return nodes.length === 1 && nodes[0].nodeName === 'PRE';
     }
 
-    export function isXmlViewerMode(): boolean {
-        const nodes = getRootNodes();
-
+    function isXmlViewerMode(nodes: NodeList): boolean {
         if (nodes.length === 0) {
             return false;
         }
