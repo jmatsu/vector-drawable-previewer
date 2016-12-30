@@ -14,8 +14,8 @@ dependencies:
 test:
   override:
     - cd extension
-    - npm tsc
-    - npm broserify
+    - npm run tsc
+    - npm run browserify
   post:
     - mkdir -p $CIRCLE_TEST_REPORTS/bin
     - cp extension/manifest.json $CIRCLE_TEST_REPORTS
