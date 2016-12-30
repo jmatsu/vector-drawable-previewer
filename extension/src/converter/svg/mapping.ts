@@ -11,8 +11,6 @@ export const mapper = (type: VectorNode.Type, node: Node) => {
         case VectorNode.Type.Path:
             return Mapping.toPath(node);
 
-        case VectorNode.Type.Rect:
-
     }
 
     return null;
