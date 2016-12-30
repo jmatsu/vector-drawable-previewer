@@ -2,7 +2,7 @@ machine:
   node:
     version: 6.3.1
 
-dependency:
+dependencies:
   cache_directories:
     - "~/$CIRCLE_PROJECT_REPONAME/extension/node_modules"
   override:
