@@ -9,7 +9,7 @@
     "tsc:w": "tsc -w",
     "clean": "find src -name \"*.js\" -print0|xargs -0 -I{} rm {} && find src -name \"*.js.map\" -print0|xargs -0 -I{} rm {}",
     "dry-clean": "find src -name \"*.js\"|xargs && find src -name \"*.js.map\"|xargs",
-    "browserify": "[[ ! -d bin ]] && mkdir bin || node_modules/.bin/browserify src/main.js > bin/main.js",
+    "browserify": "[ ! -d bin ] && mkdir bin || node_modules/.bin/browserify src/main.js > bin/main.js",
     "release": "rm -r bin/* && NODE_ENV='production' npm run tsc && npm run browserify; mkdir -p to-be-released/bin; cp manifest.json to-be-released/; cp bin/main.js to-be-released/bin/"
   },
   "dependencies": {
