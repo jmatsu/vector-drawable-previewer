@@ -25,14 +25,6 @@ export class Walker {
                             root.appendChild(path);
                         }
                         break;
-                    case 'rect':
-                        const rect = applier(VectorNode.Type.Rect, node);
-                        if (!Objects.isDefined(rect)) {
-                            return reject(new Error('Failed to handle rect node.'));
-                        } else {
-                            root.appendChild(rect);
-                        }
-                        break;
                     case '#text':
                         // skip empty string
                         continue;
