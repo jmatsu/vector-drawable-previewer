@@ -1,21 +1,23 @@
 machine:
   node:
     version: 6.3.1
+  environment:
+    PWD: "~/$CIRCLE_PROJECT_REPONAME/extension"
 
 dependencies:
   cache_directories:
-    - extension/node_modules
+    - node_modules
   override:
     - npm config set spin=false
     - npm config set progress=false
-    - (cd extension; npm install)
+    - npm install
 
 test:
   override:
-    - (cd extension; npm run tsc)
-    - (cd extension; npm run browserify)
+    - npm run tsc
+    - npm run browserify
   post:
     - mkdir -p $CIRCLE_TEST_REPORTS/bin
-    - cp extension/manifest.json $CIRCLE_TEST_REPORTS
-    - cp extension/bin/main.js $CIRCLE_TEST_REPORTS/bin
+    - cp manifest.json $CIRCLE_TEST_REPORTS
+    - cp bin/main.js $CIRCLE_TEST_REPORTS/bin
     - (cd $CIRCLE_TEST_REPORTS; zip build-$CIRCLE_BUILD_NUM.zip manifest.json bin/main.js)
