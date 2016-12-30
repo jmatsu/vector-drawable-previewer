@@ -1,4 +1,4 @@
-import { ShowSVGScenario } from './scenario/xmlviewer/show_svg_scenario';
+import { ShowSVGScenario } from './scenario/show_svg_scenario';
 import { PresentationComponent } from './presentation/presentation_component';
 
 class Main {
