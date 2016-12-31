@@ -1,11 +1,13 @@
 import { Promise } from 'es6-promise';
 
-export abstract class SVGPresenter {
-    abstract show(svg: Node): boolean;
+import { Context } from './context';
 
-    present(svg: Node): Promise<boolean> {
+export abstract class SVGPresenter {
+    abstract show(context: Context, svg: Node): boolean;
+
+    present(context: Context, svg: Node): Promise<boolean> {
         return new Promise((resolve, reject) => {
-            resolve(this.show(svg));
+            resolve(this.show(context, svg));
         });
     }
 }

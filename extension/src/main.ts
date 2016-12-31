@@ -1,9 +1,9 @@
 import { ShowSVGScenario } from './scenario/show_svg_scenario';
-import { PresentationComponent } from './presentation/presentation_component';
+import { ExtensionComponent } from './extension_component';
 
 class Main {
     onLoad() {
-        let pkg = PresentationComponent.getPackage();
+        let pkg = ExtensionComponent.getPackage();
         new ShowSVGScenario(pkg).consume().catch((err) => console.log(err));
     }
 }

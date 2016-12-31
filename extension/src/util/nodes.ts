@@ -29,4 +29,8 @@ export namespace Nodes {
             }
         }
     }
+
+    export function hasClass(target: Element, className: string) {
+        return new RegExp('(\\s|^)' + className + '(\\s|$)').test(target.className);
+    }
 }
