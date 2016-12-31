@@ -11,6 +11,8 @@ dependencies:
     - (cd extension; npm install)
 
 test:
+  pre:
+    - (cd extension; npm run lint)
   override:
     - (cd extension; npm run tsc)
     - (cd extension; npm run browserify)

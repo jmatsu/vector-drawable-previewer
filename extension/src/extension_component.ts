@@ -1,21 +1,28 @@
 import { Documents } from './util/documents';
 import * as PresentationComponent from './presentation/presentation_component';
+import { Logger } from './util/logger';
 
 export namespace ExtensionComponent {
     export function getPackage(): PresentationComponent.Package {
         const nodes = Documents.getRootNodeList();
 
         if (isDirectMode(nodes)) {
+            Logger.log('Direct mode');
             return new PresentationComponent.DirectPackage();
         } else if (isRawMode(nodes)) {
+            Logger.log('Raw mode');
             return new PresentationComponent.RawPackage();
         } else if (isXmlViewerMode(nodes)) {
+            Logger.log('Xml viewer mode');
             return new PresentationComponent.XmlViewerPackage();
         } else if (isGithubDiffMode()) {
+            Logger.log('Github diff mode');
             return new PresentationComponent.GithubDiffPackage();
         } else if (isGithubBlobMode()) {
+            Logger.log('Github blob mode');
             return new PresentationComponent.GithubBlobPackage();
         } else {
+            Logger.log('Unknown mode');
             return new PresentationComponent.UnknownPackage();
         }
     }
