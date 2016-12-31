@@ -8,6 +8,7 @@
     "removeComments": false,
     "noImplicitAny": false,
     "module": "commonjs",
+    "noUnusedParameters": true,
     "compileOnSave": false
   },
   "include": [
