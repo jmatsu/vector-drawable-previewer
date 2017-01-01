@@ -9,6 +9,7 @@
       "static-before-instance",
       "variables-before-functions"
     ],
+    "no-namespace": false,
     "variable-name": [true,
       "ban-keywords",
       "check-format",
