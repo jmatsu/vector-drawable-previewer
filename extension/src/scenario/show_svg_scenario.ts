@@ -9,9 +9,9 @@ export class ShowSVGScenario {
         // do nothing
     }
 
-    public consume(): Promise<boolean[]> {
+    public consume(): Promise<Context[]> {
         const num = this.pkg.retriever.estimateCondidates();
-        const promises = new Array<Promise<boolean>>(num);
+        const promises = new Array<Promise<Context>>(num);
 
         for (let i = 0; i < num; i++) {
             const context = new Context(i);
