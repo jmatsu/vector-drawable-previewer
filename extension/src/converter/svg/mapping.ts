@@ -1,7 +1,7 @@
-import { VectorNode } from '../../const/vector_node';
-import { SVGNode } from '../../const/svg_node';
-import { Nodes } from '../../util/nodes';
-import { Colors } from '../../util/colors';
+import { VectorNode } from "../../const/vector_node";
+import { SVGNode } from "../../const/svg_node";
+import { Nodes } from "../../util/nodes";
+import { Colors } from "../../util/colors";
 
 export const mapper = (type: VectorNode.Type, node: Node) => {
     switch(type) {
@@ -18,14 +18,14 @@ export const mapper = (type: VectorNode.Type, node: Node) => {
 
 namespace Mapping {
     export function toRoot(copyFrom: Node): Node {
-        const svg = Nodes.createNode('svg');
+        const svg = Nodes.createNode("svg");
 
         const copyFromAttr = copyFrom.attributes;
         const vecAttrs = VectorNode.Root.Attribute;
         const svgAttrs = SVGNode.Root.Attribute;
 
-        const width = copyFromAttr[vecAttrs.Width].value.replace('dp', '');
-        const height = copyFromAttr[vecAttrs.Height].value.replace('dp', '');
+        const width = copyFromAttr[vecAttrs.Width].value.replace("dp", "");
+        const height = copyFromAttr[vecAttrs.Height].value.replace("dp", "");
 
         Nodes.setAttribute(`${width}px`, svg, svgAttrs.Width);
         Nodes.setAttribute(`${height}px`, svg, svgAttrs.Height);
@@ -34,7 +34,7 @@ namespace Mapping {
     }
 
     export function toPath(copyFrom: Node) {
-        const path = Nodes.createNode('path');
+        const path = Nodes.createNode("path");
 
         const copyFromAttr = copyFrom.attributes;
         const vecAttrs = VectorNode.Path.Attribute;
@@ -49,7 +49,7 @@ namespace Mapping {
         const fillColor = copyFromAttr[vecAttrs.FillColor].value;
 
         if (Colors.isTransparentCode(fillColor)) {
-            Nodes.setAttribute('none', path, svgAttrs.FillColorOption);
+            Nodes.setAttribute("none", path, svgAttrs.FillColorOption);
         } else {
             Nodes.setAttribute(`fill:${fillColor};`, path, svgAttrs.FillColor);
         }

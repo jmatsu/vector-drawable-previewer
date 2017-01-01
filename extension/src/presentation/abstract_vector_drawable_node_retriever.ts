@@ -1,6 +1,6 @@
-import { Promise } from 'es6-promise';
+import { Promise } from "es6-promise";
 
-import { Context } from './context';
+import { Context } from "./context";
 
 export abstract class VectorDrawableNodeRetriever {
     public node?: Node;

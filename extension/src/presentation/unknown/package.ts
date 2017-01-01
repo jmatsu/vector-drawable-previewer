@@ -1,6 +1,6 @@
-import { VectorDrawableNodeRetriever } from './vector_drawable_node_retriever';
-import { SVGPresenter } from './svg_presenter';
-import { Package as PackageTemplate } from '../package_template';
+import { VectorDrawableNodeRetriever } from "./vector_drawable_node_retriever";
+import { SVGPresenter } from "./svg_presenter";
+import { Package as PackageTemplate } from "../package_template";
 
 export class UnknownPackage implements PackageTemplate {
     retriever = new VectorDrawableNodeRetriever();

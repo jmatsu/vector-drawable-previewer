@@ -1,8 +1,8 @@
-import { Promise } from 'es6-promise';
+import { Promise } from "es6-promise";
 
-import { VectorDrawableConverter } from '../converter/vector_drawable_conveter';
-import { Package } from '../presentation/package_template';
-import { Context } from '../presentation/context';
+import { VectorDrawableConverter } from "../converter/vector_drawable_conveter";
+import { Package } from "../presentation/package_template";
+import { Context } from "../presentation/context";
 
 export class ShowSVGScenario {
     constructor(private pkg: Package) {

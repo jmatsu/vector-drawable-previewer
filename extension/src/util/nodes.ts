@@ -1,4 +1,4 @@
-import { Objects } from './objects';
+import { Objects } from "./objects";
 
 export namespace Nodes {
     export function isVector(node: Node): boolean {
@@ -11,7 +11,7 @@ export namespace Nodes {
 
     export function setAttribute(value: string, copyTo: Node, copyToName: string) {
         if (Objects.isDefined(value)) {
-            if (typeof (copyTo as any).setAttributeNS === 'function') {
+            if (typeof (copyTo as any).setAttributeNS === "function") {
                 (copyTo as any).setAttributeNS(null, copyToName, value);
             } else {
                 copyTo.attributes[copyToName] = value;
@@ -19,10 +19,11 @@ export namespace Nodes {
         }
     }
 
-    export function copyAttribute(copyFrom: Node, copyFromName: string, copyTo: Node, copyToName: string, converter: (val: string) => string = (val) => val) {
+    export function copyAttribute(copyFrom: Node, copyFromName: string,
+        copyTo: Node, copyToName: string, converter: (val: string) => string = (val) => val) {
         const attr = copyFrom.attributes[copyFromName];
         if (Objects.isDefined(attr)) {
-            if (typeof (copyTo as any).setAttributeNS === 'function') {
+            if (typeof (copyTo as any).setAttributeNS === "function") {
                 (copyTo as any).setAttributeNS(null, copyToName, converter(attr.value));
             } else {
                 copyTo.attributes[copyToName] = converter(attr.value);
@@ -31,6 +32,6 @@ export namespace Nodes {
     }
 
     export function hasClass(target: Element, className: string) {
-        return new RegExp('(\\s|^)' + className + '(\\s|$)').test(target.className);
+        return new RegExp("(\\s|^)" + className + "(\\s|$)").test(target.className);
     }
 }

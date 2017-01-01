@@ -1,4 +1,4 @@
-import { Nodes } from './nodes';
+import { Nodes } from "./nodes";
 
 export namespace NodeLists {
     export function isVector(nodes: NodeList): boolean {
