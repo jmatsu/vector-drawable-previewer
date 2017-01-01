@@ -1,20 +1,20 @@
-import { Objects } from "./objects";
-import { Nodes } from "./nodes";
 import { Logger } from "./logger";
+import { Nodes } from "./nodes";
+import { Objects } from "./objects";
 
 export namespace Githubs {
     export function obtainFromFilePreview(file: Element): string {
         const codes = file.querySelectorAll("td.blob-code");
 
-        if (!Objects.isDefined(codes) || codes.length == 0) {
-            Logger.log(`!Objects.isDefined(codes) || codes.length == 0 => ${!Objects.isDefined(codes)} || ${codes.length == 0}`);
+        if (!Objects.isDefined(codes) || codes.length === 0) {
+            Logger.log(`!Objects.isDefined(codes) || codes.length === 0 => ${!Objects.isDefined(codes)} || ${codes.length === 0}`);
             return null;
         }
 
         let content = "";
 
-        for(let i = 0, end = codes.length; i < end; i++) {
-            content += `${digTextRow(codes[i])}\n`;
+        for (const code of codes) {
+            content += `${digTextRow(code)}\n`;
         }
 
         Logger.log("---- begin content ----");
@@ -25,10 +25,8 @@ export namespace Githubs {
 
     function digTextRow(row: Node) {
         let text = "";
-        const nodes = row.childNodes;
-        for(let i = 0, end = nodes.length; i < end; i++) {
-            const node = nodes[i];
-            if (nodes[i].nodeName === "#text") {
+        for (const node of row.childNodes) {
+            if (node.nodeName === "#text") {
                 text += node.textContent;
             } else {
                 text += digTextRow(node);
@@ -47,8 +45,7 @@ export namespace Githubs {
 
         let content = "";
 
-        for(let i = 1, end=indices.length; i < end; i++) {
-            const index = indices[i];
+        for (const index of indices) {
             if (Nodes.hasClass(index, "empty-cell")) {
                 Logger.log("skip empty cell");
                 continue;

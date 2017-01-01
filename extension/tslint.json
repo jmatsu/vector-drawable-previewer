@@ -9,6 +9,7 @@
       "static-before-instance",
       "variables-before-functions"
     ],
+    "no-console" : ["error", { "allow": ["warn", "error", "log"] }],
     "align": [true, "statements"],
     "no-namespace": false,
     "variable-name": [true,

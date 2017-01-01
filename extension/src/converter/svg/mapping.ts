@@ -1,19 +1,19 @@
-import { VectorNode } from "../../const/vector_node";
 import { SVGNode } from "../../const/svg_node";
-import { Nodes } from "../../util/nodes";
+import { VectorNode } from "../../const/vector_node";
 import { Colors } from "../../util/colors";
+import { Nodes } from "../../util/nodes";
 
 export const mapper = (type: VectorNode.Type, node: Node) => {
-    switch(type) {
+    switch (type) {
         case VectorNode.Type.Root:
             return Mapping.toRoot(node);
 
         case VectorNode.Type.Path:
             return Mapping.toPath(node);
 
+        default:
+            return null;
     }
-
-    return null;
 };
 
 namespace Mapping {

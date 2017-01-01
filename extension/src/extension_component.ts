@@ -1,5 +1,5 @@
-import { Documents } from "./util/documents";
 import * as PresentationComponent from "./presentation/presentation_component";
+import { Documents } from "./util/documents";
 import { Logger } from "./util/logger";
 
 export namespace ExtensionComponent {
@@ -41,7 +41,9 @@ export namespace ExtensionComponent {
         }
 
         const node = nodes[0];
+        /* tslint:disable:no-string-literal */
         return node.nodeName === "div" && node.attributes["id"].value === "webkit-xml-viewer-source-xml";
+        /* tsslint:enable:no-string-literal */
     }
 
     function isGithubDiffMode(): boolean {

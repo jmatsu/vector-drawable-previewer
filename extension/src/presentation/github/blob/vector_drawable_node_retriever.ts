@@ -1,15 +1,11 @@
+import { Githubs } from "../../../util/githubs";
 import { NodeLists } from "../../../util/node_lists";
+import { Objects } from "../../../util/objects";
 import { VectorDrawableNodeRetriever as Retriever } from "../../abstract_vector_drawable_node_retriever";
 import { Context } from "../../context";
-import { Objects } from "../../../util/objects";
-import { Githubs } from "../../../util/githubs";
 
 export class VectorDrawableNodeRetriever extends Retriever {
-    estimateCondidates(): number {
-        return 1;
-    }
-
-    mayRetrieveNode(ctx?: Context): Node {
+    public mayRetrieveNode(ctx?: Context): Node {
         const node = document.querySelector("div.file");
 
         const content = Githubs.obtainFromFilePreview(node);

@@ -3,7 +3,7 @@ import { VectorDrawableNodeRetriever as Retriever } from "../abstract_vector_dra
 import { Context } from "../context";
 
 export class VectorDrawableNodeRetriever extends Retriever {
-    mayRetrieveNode(ctx?: Context): Node {
+    public mayRetrieveNode(ctx?: Context): Node {
         const parser = new DOMParser();
         const doc = parser.parseFromString(document.body.childNodes[0].textContent, "application/xml");
         if (NodeLists.isVector(doc.childNodes)) {
