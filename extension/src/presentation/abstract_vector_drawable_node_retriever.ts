@@ -1,17 +1,17 @@
-import { Promise } from 'es6-promise';
+import { Promise } from "es6-promise";
 
-import { Context } from './context';
+import { Context } from "./context";
 
 export abstract class VectorDrawableNodeRetriever {
     public node?: Node;
 
-    abstract mayRetrieveNode(ctx?: Context): Node;
+    public abstract mayRetrieveNode(ctx?: Context): Node;
 
-    estimateCondidates(): number {
+    public estimateCondidates(): number {
         return 1;
     }
 
-    retrieve(ctx: Context = null): Promise<Node> {
+    public retrieve(ctx: Context = null): Promise<Node> {
         return new Promise((resolve, reject) => {
             this.node = this.mayRetrieveNode(ctx);
 
