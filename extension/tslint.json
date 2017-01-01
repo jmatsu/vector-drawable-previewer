@@ -3,12 +3,13 @@
   "rules": {
     "interface-name": false,
     "max-classes-per-file": false,
-    "max-line-length": [true, 140],
+    "max-line-length": [true, 180],
     "member-ordering": [true,
       "public-before-private",
       "static-before-instance",
       "variables-before-functions"
     ],
+    "align": [true, "statements"],
     "no-namespace": false,
     "variable-name": [true,
       "ban-keywords",
