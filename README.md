@@ -2,10 +2,6 @@
 
 This is a Chrome extension for previewing vector drawable.
 
-### Installation
-
-
-
 ### Limitation
 
 This doesn't support following
@@ -54,6 +50,13 @@ none.
 #### group
 
 none.
+
+### How to develop
+
+1. Clone this repository.
+2. Edit some files...
+3. `cd extension; npm run compile` or `cd extension; npm run browserify` if compiled.
+4. Install or reload this extension
 
 ### Specifications
 
