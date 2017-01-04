@@ -12,7 +12,7 @@
     "lint": "tslint --project ./tsconfig.json",
     "browserify": "[ ! -d bin ] && mkdir bin || browserify src/main.js > bin/main.js",
     "compile": "rm -r bin/* && npm run tsc && npm run browserify",
-    "release": "[ $(grep 'const env' 'src/util/Logger.ts'|awk '$0=$5') = '\"development\";' ] && echo 'need to set env to production' 1>&2 && exit 1 || :; npm run compile && mkdir -p build/bin && cp manifest.json build/ && cp bin/main.js build/bin/ && zip -r $(grep 'version' manifest.json|awk '$0=$3'|sed -e 's/\"//' -e 's/,/-release.zip/') build"
+    "release": "[ $(grep 'const env' 'src/util/Logger.ts'|awk '$0=$5') = '\"development\";' ] && echo 'need to set env to production' 1>&2 && exit 1 || :; npm run compile && mkdir -p build/bin && cp manifest.json build/ && cp bin/main.js build/bin/ && zip -r $(grep 'version' manifest.json|awk '$0=$3'|sed -e 's/\"//g' -e 's/,/-release.zip/') build"
   },
   "dependencies": {
     "es6-promise": "^3.0.2",
