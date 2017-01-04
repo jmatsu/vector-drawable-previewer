@@ -4,7 +4,7 @@ import { Context } from "../../context";
 
 export class SVGPresenter extends Presenter {
     protected show(context: Context, svg: Node): boolean {
-        context.vecBase.insertBefore(svg, context.vecBase.querySelector("div.js-file-content"));
+        context.vecBase.querySelector("div.file-header").appendChild(Documents.createPreviewElement(svg));
         return true;
     }
 }

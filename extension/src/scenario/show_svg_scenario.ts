@@ -3,6 +3,7 @@ import { Promise } from "es6-promise";
 import { VectorDrawableConverter } from "../converter/vector_drawable_conveter";
 import { Context } from "../presentation/context";
 import { Package } from "../presentation/package_template";
+import { Logger } from "../util/logger";
 
 export class ShowSVGScenario {
     constructor(private pkg: Package) {
@@ -19,8 +20,12 @@ export class ShowSVGScenario {
                 context,
             ).then((n) => {
                 return new VectorDrawableConverter().convertToSVG(n);
+            }, (err) => {
+                Logger.log(err);
             }).then((n) => {
                 return this.pkg.presenter.present(context, n);
+            }, (err) => {
+                Logger.log(err);
             });
         }
 

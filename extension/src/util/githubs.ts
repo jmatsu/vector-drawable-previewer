@@ -44,8 +44,13 @@ export namespace Githubs {
         }
 
         let content = "";
+        let skip = true;
 
         for (const index of indices) {
+            if (skip) {
+                skip = false;
+                continue;
+            }
             if (Nodes.hasClass(index, "empty-cell")) {
                 Logger.log("skip empty cell");
                 continue;

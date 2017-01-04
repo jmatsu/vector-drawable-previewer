@@ -11,15 +11,15 @@
     "dry-clean": "find src -name \"*.js\"|xargs && find src -name \"*.js.map\"|xargs",
     "lint": "tslint --project ./tsconfig.json",
     "browserify": "[ ! -d bin ] && mkdir bin || browserify src/main.js > bin/main.js",
-    "release": "rm -r bin/* && NODE_ENV='production' npm run tsc && NODE_ENV='production' npm run browserify"
+    "compile": "rm -r bin/* && npm run tsc && npm run browserify",
+    "release": "[ $(grep 'const env' 'src/util/Logger.ts'|awk '$0=$5') = '\"development\";' ] && echo 'need to set env to production' 1>&2 && exit 1 || :; npm run compile && mkdir -p build/bin && cp manifest.json build/ && cp bin/main.js build/bin/ && zip -r $(grep 'version' manifest.json|awk '$0=$3'|sed -e 's/\"//' -e 's/,/-release.zip/') build"
   },
   "dependencies": {
-    "browserify": "13.0.1",
     "es6-promise": "^3.0.2",
     "es6-shim": "^0.33.3"
   },
   "devDependencies": {
-    "@types/node": "^6.0.55",
+    "browserify": "13.0.1",
     "tslint": "4.2.0",
     "typescript": "^2.1.4"
   }
