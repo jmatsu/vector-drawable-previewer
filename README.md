@@ -1,5 +1,7 @@
 ### vdv - VectorDrawable Viewer
 
+This is a Chrome extension for previewing vector drawable.
+
 ### Limitation
 
 This doesn't support following
@@ -11,37 +13,50 @@ This doesn't support following
 
 `namespace is omitted.`
 
-#### <vector>
+#### vector
 
-|attribute name|supported|will support?|
-|:------|:-----|:------|
-|name|No|if needed|
-|width|Yes|-|
-|height|Yes|-|
-|viewportWidth|No|No|
-|viewportHeight|No|No|
-|tint|No|if possible|
-|tintMode|No|if possible|
-|autoMirrored|No|if possible|
-|alpha|No|if possible|
+the root element.
 
-#### <path>
+|attribute name|supported|
+|:------|:-----|
+|name|No|
+|width|Yes|
+|height|Yes|
+|viewportWidth|No|
+|viewportHeight|No|
+|tint|No|
+|tintMode|No|
+|autoMirrored|No|
+|alpha|No|
 
-|attribute name|supported|will support?|
-|:------|:-----|:------|
-|name|No|if needed|
-|pathData|Yes|-|
-|height|Yes|-|
-|viewportWidth|No|No|
-|viewportHeight|No|No|
-|tint|No|if possible|
-|tintMode|No|if possible|
-|autoMirrored|No|if possible|
-|alpha|No|if possible|
+#### path
 
-#### <clip-path>
+|attribute name|supported|
+|:------|:-----|
+|name|No|
+|pathData|Yes|
+|height|Yes|
+|viewportWidth|No|
+|viewportHeight|No|
+|tint|No|
+|tintMode|No|
+|autoMirrored|No|
+|alpha|No|
 
-#### <group>
+#### clip-path
+
+none.
+
+#### group
+
+none.
+
+### How to develop
+
+1. Clone this repository.
+2. Edit some files...
+3. `cd extension; npm run compile` or `cd extension; npm run browserify` if compiled.
+4. Install or reload this extension
 
 ### Specifications
 

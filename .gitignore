@@ -11,9 +11,11 @@ extension/src/*/*/*/*/*/*/*.js
 extension/vdv-*.zip
 extension/bin/*
 extension/to-be-released/
+extension/build/*
 !extension/bin/.gitkeep
 *.crx
 *.pem
+*-release.zip
 
 # Created by https://www.gitignore.io/api/node,
 

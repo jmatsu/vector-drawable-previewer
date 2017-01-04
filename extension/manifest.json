@@ -3,7 +3,7 @@
 
   "name": "vdv",
   "description": "This extension shows the vector drawable when you open it",
-  "version": "1.0",
+  "version" : "0.0.2",
   "author": "Jumpei Matsuda @jmatsu",
 
   "content_scripts": [

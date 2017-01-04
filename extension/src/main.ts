@@ -1,11 +1,11 @@
-import { ShowSVGScenario } from './scenario/xmlviewer/show_svg_scenario';
-import { PresentationComponent } from './presentation/presentation_component';
+import { ExtensionComponent } from "./extension_component";
+import { ShowSVGScenario } from "./scenario/show_svg_scenario";
 
-class Main {
-    onLoad() {
-        let pkg = PresentationComponent.getPackage();
+namespace Vdv {
+    export function onLoad() {
+        let pkg = ExtensionComponent.getPackage();
         new ShowSVGScenario(pkg).consume().catch((err) => console.log(err));
     }
 }
 
-document.addEventListener("DOMContentLoaded", new Main().onLoad, false);
+document.addEventListener("DOMContentLoaded", Vdv.onLoad, false);
