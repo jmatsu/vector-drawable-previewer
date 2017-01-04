@@ -1,5 +1,5 @@
 export namespace Logger {
-    const env = process.env.NODE_ENV || "development";
+    const env: string = "development";
 
     export function log(m: any) {
         if (env !== "production") {
