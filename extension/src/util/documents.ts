@@ -24,7 +24,7 @@ export namespace Documents {
 
         for (const radioDiv of radioDivs) {
             const radio = radioDiv.querySelector("input[type=radio]") as HTMLInputElement;
-            radio.onclick = function(e) {
+            radio.onclick = (e: MouseEvent) => {
                 const target = e.target as HTMLInputElement;
                 if (target.checked) {
                     if (target.value === "None") {
