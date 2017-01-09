@@ -20,4 +20,4 @@ test:
   post:
     - mkdir -p $CIRCLE_TEST_REPORTS
     - mv extension/package $CIRCLE_TEST_REPORTS
-    - (cd $CIRCLE_TEST_REPORTS; zip build-$CIRCLE_BUILD_NUM.zip package)
+    - (cd $CIRCLE_TEST_REPORTS; zip -r build-$CIRCLE_BUILD_NUM.zip package)
