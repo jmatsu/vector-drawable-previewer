@@ -12,6 +12,7 @@ dependencies:
 
 test:
   pre:
+    - mv -f extension/template/logger.ts extension/src/util/logger.ts
     - (cd extension; npm run lint)
   override:
     - (cd extension; npm run tsc)
