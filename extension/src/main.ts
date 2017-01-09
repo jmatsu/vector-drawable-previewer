@@ -22,7 +22,7 @@ namespace Vdp {
     export function mayLoadVectorDrawable() {
         if (!Objects.isDefined(document.querySelector(`#${Documents.containerId}`))) {
             let pkg = ExtensionComponent.getPackage();
-            new ShowSVGScenario(pkg).consume().catch((err) => console.log(err));
+            new ShowSVGScenario(pkg).consume().catch((err) => Logger.log(err));
         }
     }
 }
