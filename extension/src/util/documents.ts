@@ -1,4 +1,6 @@
 export namespace Documents {
+    export const containerId = "vdp-svg-container";
+
     export function getRootNodeList(): NodeList {
         return (document.body || document).childNodes;
     }
@@ -10,7 +12,9 @@ export namespace Documents {
         const root = document.createElement("div");
         root.setAttribute("style", "padding: 10px;");
 
-        const svgContainer = document.createElement("span");
+        const svgContainer = document.createElement("div");
+        svgContainer.setAttribute("id", containerId);
+        svgContainer.setAttribute("style", "display: inline-block;");
         svgContainer.appendChild(svg);
 
         const optContainer = document.createElement("div");

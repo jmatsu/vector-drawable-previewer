@@ -3,6 +3,14 @@ import { Nodes } from "./nodes";
 import { Objects } from "./objects";
 
 export namespace Githubs {
+    export function isGithubRepositoryPage() {
+        return /https?:\/\/github\.com\/[^/]+\/[^/]+\/.*/.test(location.href);
+    }
+
+    export function getAjaxContainer() {
+        return document.querySelector("#js-repo-pjax-container");
+    }
+
     export function obtainFromFilePreview(file: Element): string {
         const codes = file.querySelectorAll("td.blob-code");
 
