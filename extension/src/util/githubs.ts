@@ -8,7 +8,7 @@ export namespace Githubs {
     }
 
     export function isGithubBlobPage(): boolean {
-        return /https?:\/\/github\.com\/[^/]+\/[^/]+\/blob\/.+?\/res\/[^/]+\/[^.]+\.xml\??.*$/.test(location.href);
+        return /https?:\/\/github\.com\/[^/]+\/[^/]+\/blob\/.*$/.test(location.href);
     }
 
     export function getAjaxContainer() {
