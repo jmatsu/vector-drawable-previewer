@@ -11,8 +11,7 @@
     "dry-clean": "find src -name \"*.js\"|xargs && find src -name \"*.js.map\"|xargs",
     "lint": "tslint --project ./tsconfig.json",
     "browserify": "[ ! -d package ] && mkdir package || browserify src/main.js > package/main.js",
-    "compile": "npm run tsc && npm run browserify",
-    "release": "[ $(grep 'const env' 'src/util/Logger.ts'|awk '$0=$5') = '\"development\";' ] && echo 'need to set env to production' 1>&2 && exit 1 || :; npm run compile && zip -r $(grep 'version' manifest.json|awk '$0=$3'|sed -e 's/\"//g' -e 's/,/-release.zip/') package"
+    "compile": "npm run tsc && npm run browserify"
   },
   "dependencies": {
     "es6-promise": "^3.0.2",
