@@ -27,7 +27,7 @@ namespace Vdp {
     }
 }
 
-if (Githubs.isGithubRepositoryPage()) {
+if (Githubs.isGithubRepositoryPage() && !Githubs.isGithubBlobPage()) {
     document.addEventListener("DOMContentLoaded", Vdp.bindEvent, false);
 } else {
     document.addEventListener("DOMContentLoaded", Vdp.mayLoadVectorDrawable, false);
