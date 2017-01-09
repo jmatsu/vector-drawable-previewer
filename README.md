@@ -33,3 +33,7 @@ See https://github.com/jmatsu/vector-drawable-previewer/blob/master/extension/sr
 + [About VectorDrawable](https://developer.android.com/guide/topics/graphics/vector-drawable-resources.html)
 + [VectorDrawable](https://developer.android.com/reference/android/graphics/drawable/VectorDrawable.html)
 + [VectorDrawableCompat](https://developer.android.com/reference/android/support/graphics/drawable/VectorDrawableCompat.html)
+
+### License
+
+Under [MIT](https://github.com/jmatsu/vector-drawable-previewer/blob/master/LICENSE).
