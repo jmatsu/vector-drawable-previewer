@@ -8,6 +8,10 @@ export class VectorDrawableNodeRetriever extends Retriever {
     public mayRetrieveNode(ctx?: Context): Node {
         const node = document.querySelector("div.file");
 
+        if (!Objects.isDefined(node)) {
+            return null;
+        }
+
         const content = Githubs.obtainFromFilePreview(node);
 
         if (!Objects.isDefined(content)) {

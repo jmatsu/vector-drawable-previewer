@@ -8,11 +8,7 @@ extension/src/*/*/*/*/*.js
 extension/src/*/*/*/*/*/*.js
 extension/src/*/*/*/*/*/*/*.js
 *.js.map
-extension/vdv-*.zip
-extension/bin/*
-extension/to-be-released/
-extension/build/*
-!extension/bin/.gitkeep
+extension/package/main.js
 *.crx
 *.pem
 *-release.zip
