@@ -16,9 +16,5 @@
       "js": ["main.js"],
       "run_at": "document_start"
     }
-  ],
-  "permissions": [
-    "*://*/*",
-    "<all_urls>"
   ]
 }

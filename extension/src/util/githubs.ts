@@ -4,7 +4,7 @@ import { Objects } from "./objects";
 
 export namespace Githubs {
     export function isGithubRepositoryPage() {
-        return /https?:\/\/github\.com\/[^/]+\/[^/]+\/.*/.test(location.href);
+        return /https?:\/\/github\.com\/[^/]+\/[^/]+.*/.test(location.href);
     }
 
     export function getAjaxContainer() {
