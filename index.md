@@ -1,6 +1,17 @@
 ---
-# You don't need to edit this file, it's empty on purpose.
-# Edit theme's home layout instead if you wanna make some changes
-# See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 layout: home
+title:  "VectorDrawable Previewer"
 ---
+### VectorDrawable Previewer
+
+![icon](https://github.com/jmatsu/vector-drawable-previewer/blob/master/extension/package/icon_128.png)
+
+This is a Chrome extension for previewing vector drawable.
+
+<a href="https://chrome.google.com/webstore/detail/vdv/oidfgbojkfckgmkljhacgnckncpanbhm" target="_blank">
+<img src="https://developer.chrome.com/webstore/images/ChromeWebStore_Badge_v2_206x58.png">
+</a>
+
+### License
+
+Under [MIT](https://github.com/jmatsu/vector-drawable-previewer/blob/master/LICENSE).
