@@ -12,27 +12,46 @@ export class Walker {
                 return reject(new Error("Failed to create root node."));
             }
 
-            const nodes = vd.childNodes;
+            try {
+                this.iterate(root, vd.childNodes, applier);
+                return resolve(root);
+            } catch (err) {
+                return reject(err);
+            }
+        });
+    }
 
-            for (const node of nodes) {
-                switch (node.nodeName) {
-                    case "path":
-                        const path = applier(VectorNode.Type.Path, node);
-                        if (!Objects.isDefined(path)) {
-                            return reject(new Error("Failed to handle path node."));
-                        } else {
-                            root.appendChild(path);
-                        }
-                        break;
-                    case "#text":
-                        // skip empty string
-                        continue;
-                    default:
-                        return reject(new Error("Found unsupported element <" + node.nodeName + ">"));
-                }
+    private iterate(parent: Node, nodes: NodeList, applier: (VectorNodeType, Node) => Node) {
+        for (const data of this.dataGenerator(nodes)) {
+            const n = applier(data.type, data.node);
+
+            if (!Objects.isDefined(n)) {
+                throw new Error(`Failed to handle ${data.type} node.`);
             }
 
-            return resolve(root);
-        });
+            parent.appendChild(n);
+
+            if (data.type == VectorNode.Type.Group) {
+                this.iterate(n, data.node.childNodes, applier);
+            }
+        }
+    }
+
+    private *dataGenerator(nodes: NodeList) {
+        for (const node of nodes) {
+            switch (node.nodeName) {
+                case "path":
+                    yield new VectorNode.Data(VectorNode.Type.Path, node);
+                    continue;
+                case "group":
+                    yield new VectorNode.Data(VectorNode.Type.Group, node);
+                    continue;
+                case "#text":
+                    // skip empty string
+                    continue;
+                default:
+                    throw new Error("Found unsupported element <" + node.nodeName + ">");
+            }
+        }
     }
 }
