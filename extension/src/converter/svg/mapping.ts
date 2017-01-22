@@ -2,6 +2,7 @@ import { SVGNode } from "../../const/svg_node";
 import { VectorNode } from "../../const/vector_node";
 import { Colors } from "../../util/colors";
 import { Nodes } from "../../util/nodes";
+import { Objects } from "../../util/objects";
 
 export const mapper = (type: VectorNode.Type, node: Node) => {
     switch (type) {
@@ -10,6 +11,9 @@ export const mapper = (type: VectorNode.Type, node: Node) => {
 
         case VectorNode.Type.Path:
             return Mapping.toPath(node);
+
+        case VectorNode.Type.Group:
+            return Mapping.toG(node);
 
         default:
             return null;
@@ -55,5 +59,34 @@ namespace Mapping {
         }
 
         return path;
+    }
+
+    export function toG(copyFrom: Node) {
+        const g = Nodes.createNode("g");
+
+        const copyFromAttr = copyFrom.attributes;
+        const vecAttrs = VectorNode.Group.Attribute;
+        const svgAttrs = SVGNode.G.Attribute;
+
+        if (canRotate(copyFrom)) {
+            const rotate = copyFromAttr[vecAttrs.Rotation].value;
+            const pivotX = copyFromAttr[vecAttrs.PivotX].value;
+            const pivotY = copyFromAttr[vecAttrs.PivotY].value;
+
+            Nodes.setAttribute(`rotate(${rotate} ${pivotX} ${pivotY})`, g, svgAttrs.Transform);
+        }
+
+        return g;
+    }
+
+    function canRotate(node: Node) {
+        const attrs = node.attributes;
+        const vecAttrs = VectorNode.Group.Attribute;
+
+        const rotate = attrs[vecAttrs.Rotation];
+        const pivotX = attrs[vecAttrs.PivotX];
+        const pivotY = attrs[vecAttrs.PivotY];
+
+        return Objects.isDefined(rotate) && Objects.isDefined(rotate) && Objects.isDefined(rotate);
     }
 }
