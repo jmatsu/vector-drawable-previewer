@@ -31,7 +31,7 @@ export class Walker {
 
             parent.appendChild(n);
 
-            if (data.type == VectorNode.Type.Group) {
+            if (data.type === VectorNode.Type.Group) {
                 this.iterate(n, data.node.childNodes, applier);
             }
         }
