@@ -1,10 +1,11 @@
 import { Promise } from "es6-promise";
 
+import { Id } from "../../const/id";
 import { VectorNode } from "../../const/vector_node";
 import { Objects } from "../../util/objects";
 
 export class Walker {
-    public walk(vd: Node, applier: (VectorNodeType, Node) => Node): Promise<Node> {
+    public walk(vd: Node, applier: (VectorNodeType, Node) => Element): Promise<Node> {
         return new Promise((resolve, reject) => {
             const root = applier(VectorNode.Type.Root, vd);
 
@@ -13,7 +14,7 @@ export class Walker {
             }
 
             try {
-                this.iterate(root, vd.childNodes, applier);
+                this.iterate(root.querySelector(`#${Id.topGroup}`), vd.childNodes, applier);
                 return resolve(root);
             } catch (err) {
                 return reject(err);
@@ -21,7 +22,7 @@ export class Walker {
         });
     }
 
-    private iterate(parent: Node, nodes: NodeList, applier: (VectorNodeType, Node) => Node) {
+    private iterate(parent: Node, nodes: NodeList, applier: (VectorNodeType, Element) => Node) {
         for (const data of this.dataGenerator(nodes)) {
             const n = applier(data.type, data.node);
 
