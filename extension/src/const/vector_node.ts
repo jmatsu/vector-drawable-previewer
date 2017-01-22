@@ -2,6 +2,11 @@ export namespace VectorNode {
     export const enum Type {
         Root = 1,
         Path,
+        Group,
+    }
+
+    export class Data {
+        constructor(public type: Type, public node: Node) {}
     }
 
     export namespace Root {
@@ -36,18 +41,18 @@ export namespace VectorNode {
         }
     }
 
-    // export namespace Group {
-    //     export namespace Attribute {
+    export namespace Group {
+        export namespace Attribute {
     //         export const Name = "android:name";
-    //         export const PivotX = "android:pivotX";
-    //         export const PivotY = "android:pivotY";
-    //         export const ScaleX = "android:scaleX";
-    //         export const ScaleY = "android:scaleY";
-    //         export const TranslateX = "android:translateX";
-    //         export const TranslateY = "android:translateY";
-    //         export const Rotation = "android:rotation";
-    //     }
-    // }
+            export const PivotX = "android:pivotX";
+            export const PivotY = "android:pivotY";
+            export const ScaleX = "android:scaleX";
+            export const ScaleY = "android:scaleY";
+            export const TranslateX = "android:translateX";
+            export const TranslateY = "android:translateY";
+            export const Rotation = "android:rotation";
+        }
+    }
 
     // export namespace ClipPath {
     //     export namespace Attribute {

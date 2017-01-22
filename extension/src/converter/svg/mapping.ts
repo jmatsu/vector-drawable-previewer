@@ -2,6 +2,7 @@ import { SVGNode } from "../../const/svg_node";
 import { VectorNode } from "../../const/vector_node";
 import { Colors } from "../../util/colors";
 import { Nodes } from "../../util/nodes";
+import { Objects } from "../../util/objects";
 
 export const mapper = (type: VectorNode.Type, node: Node) => {
     switch (type) {
@@ -10,6 +11,9 @@ export const mapper = (type: VectorNode.Type, node: Node) => {
 
         case VectorNode.Type.Path:
             return Mapping.toPath(node);
+
+        case VectorNode.Type.Group:
+            return Mapping.toG(node);
 
         default:
             return null;
@@ -55,5 +59,61 @@ namespace Mapping {
         }
 
         return path;
+    }
+
+    export function toG(copyFrom: Node) {
+        const g = Nodes.createNode("g");
+
+        const svgAttrs = SVGNode.G.Attribute;
+        const transformValue: string = [extractRotation(copyFrom), extractScale(copyFrom), extractTranslate(copyFrom)].join(" ");
+
+        if (transformValue.trim().length > 0) {
+            Nodes.setAttribute(transformValue, g, svgAttrs.Transform);
+        }
+
+        return g;
+    }
+
+    function extractRotation(node: Node): string {
+        const attrs = node.attributes;
+        const vecAttrs = VectorNode.Group.Attribute;
+
+        const rotate = attrs[vecAttrs.Rotation];
+        const pivotX = attrs[vecAttrs.PivotX];
+        const pivotY = attrs[vecAttrs.PivotY];
+
+        if (Objects.isDefined(rotate) && Objects.isDefined(pivotX) && Objects.isDefined(pivotY)) {
+            return `rotate(${rotate.value} ${pivotX.value} ${pivotY.value})`;
+        } else {
+            return "";
+        }
+    }
+
+    function extractScale(node: Node): string {
+        const attrs = node.attributes;
+        const vecAttrs = VectorNode.Group.Attribute;
+
+        const scaleX = attrs[vecAttrs.ScaleX];
+        const scaleY = attrs[vecAttrs.ScaleY];
+
+        if (Objects.isDefined(scaleX) && Objects.isDefined(scaleY)) {
+            return `scale(${scaleX.value} ${scaleY.value})`;
+        } else {
+            return "";
+        }
+    }
+
+    function extractTranslate(node: Node): string {
+        const attrs = node.attributes;
+        const vecAttrs = VectorNode.Group.Attribute;
+
+        const translateX = attrs[vecAttrs.TranslateX];
+        const translateY = attrs[vecAttrs.TranslateY];
+
+        if (Objects.isDefined(translateX) && Objects.isDefined(translateY)) {
+            return `translate(${translateX.value} ${translateY.value})`;
+        } else {
+            return "";
+        }
     }
 }
