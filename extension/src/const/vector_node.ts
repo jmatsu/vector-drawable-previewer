@@ -46,10 +46,10 @@ export namespace VectorNode {
     //         export const Name = "android:name";
             export const PivotX = "android:pivotX";
             export const PivotY = "android:pivotY";
-    //         export const ScaleX = "android:scaleX";
-    //         export const ScaleY = "android:scaleY";
-    //         export const TranslateX = "android:translateX";
-    //         export const TranslateY = "android:translateY";
+            export const ScaleX = "android:scaleX";
+            export const ScaleY = "android:scaleY";
+            export const TranslateX = "android:translateX";
+            export const TranslateY = "android:translateY";
             export const Rotation = "android:rotation";
         }
     }
