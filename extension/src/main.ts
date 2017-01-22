@@ -1,6 +1,6 @@
+import { Id } from "./const/id";
 import { ExtensionComponent } from "./extension_component";
 import { ShowSVGScenario } from "./scenario/show_svg_scenario";
-import { Documents } from "./util/documents";
 import { Githubs } from "./util/githubs";
 import { Logger } from "./util/logger";
 import { Objects } from "./util/objects";
@@ -20,7 +20,7 @@ namespace Vdp {
     }
 
     export function mayLoadVectorDrawable() {
-        if (!Objects.isDefined(document.querySelector(`#${Documents.containerId}`))) {
+        if (!Objects.isDefined(document.querySelector(`#${Id.svgContainer}`))) {
             let pkg = ExtensionComponent.getPackage();
             new ShowSVGScenario(pkg).consume().catch((err) => Logger.log(err));
         }

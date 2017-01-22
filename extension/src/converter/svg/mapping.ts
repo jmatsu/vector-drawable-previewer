@@ -1,6 +1,8 @@
+import { Id } from "../../const/id";
 import { SVGNode } from "../../const/svg_node";
 import { VectorNode } from "../../const/vector_node";
 import { Colors } from "../../util/colors";
+import { Documents } from "../../util/documents";
 import { Nodes } from "../../util/nodes";
 import { Objects } from "../../util/objects";
 
@@ -21,8 +23,9 @@ export const mapper = (type: VectorNode.Type, node: Node) => {
 };
 
 namespace Mapping {
-    export function toRoot(copyFrom: Node): Node {
+    export function toRoot(copyFrom: Node): Element {
         const svg = Nodes.createNode("svg");
+        svg.setAttribute("id", Id.svg);
 
         const copyFromAttr = copyFrom.attributes;
         const vecAttrs = VectorNode.Root.Attribute;
@@ -34,10 +37,15 @@ namespace Mapping {
         Nodes.setAttribute(`${width}px`, svg, svgAttrs.Width);
         Nodes.setAttribute(`${height}px`, svg, svgAttrs.Height);
         Nodes.setAttribute(`0 0 ${width} ${height}`, svg, svgAttrs.ViewBox);
+
+        const g = Nodes.createNode("g");
+        g.setAttribute("id", Id.topGroup);
+        svg.appendChild(g);
+
         return svg;
     }
 
-    export function toPath(copyFrom: Node) {
+    export function toPath(copyFrom: Node): Element {
         const path = Nodes.createNode("path");
 
         const copyFromAttr = copyFrom.attributes;
@@ -61,7 +69,7 @@ namespace Mapping {
         return path;
     }
 
-    export function toG(copyFrom: Node) {
+    export function toG(copyFrom: Node): Element {
         const g = Nodes.createNode("g");
 
         const svgAttrs = SVGNode.G.Attribute;
