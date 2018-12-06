@@ -3,7 +3,7 @@ import { VectorDrawableNodeRetriever as Retriever } from "../abstract_vector_dra
 import { Context } from "../context";
 
 export class VectorDrawableNodeRetriever extends Retriever {
-    public mayRetrieveNode(ctx?: Context): Node {
+    public mayRetrieveNode(ctx?: Context): Element {
         const nodes = document.body.childNodes;
         const vectorNode = NodeLists.findVectorNode(nodes);
 

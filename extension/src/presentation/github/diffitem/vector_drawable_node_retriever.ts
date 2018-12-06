@@ -25,7 +25,7 @@ export class VectorDrawableNodeRetriever extends Retriever {
         return this.filenameNodes.length;
     }
 
-    public mayRetrieveNode(ctx?: Context): Node {
+    public mayRetrieveNode(ctx?: Context): Element {
         const fileNode = this.filenameNodes[ctx.index].parentElement.parentElement.parentElement.querySelector("div.js-file-content");
 
         if (!Objects.isDefined(fileNode)) {

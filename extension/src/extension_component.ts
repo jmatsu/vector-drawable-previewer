@@ -39,8 +39,11 @@ export namespace ExtensionComponent {
         if (nodes.length === 0) {
             return false;
         }
+        if (!(nodes[0] instanceof Element)) {
+            return false;
+        }
 
-        const node = nodes[0];
+        const node = nodes[0] as Element;
         /* tslint:disable:no-string-literal */
         return node.nodeName === "div" && node.attributes["id"].value === "webkit-xml-viewer-source-xml";
         /* tsslint:enable:no-string-literal */

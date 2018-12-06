@@ -6,14 +6,14 @@ export namespace Nodes {
     }
 
     export function isVector(node: Node): boolean {
-        return node.nodeName === "vector";
+        return node instanceof Element && node.nodeName === "vector";
     }
 
     export function createNode(name: string): SVGElement {
         return document.createElementNS("http://www.w3.org/2000/svg", name);
     }
 
-    export function setAttribute(value: string, copyTo: Node, copyToName: string) {
+    export function setAttribute(value: string, copyTo: Element, copyToName: string) {
         if (Objects.isDefined(value)) {
             if (typeof (copyTo as any).setAttributeNS === "function") {
                 (copyTo as any).setAttributeNS(null, copyToName, value);
@@ -23,8 +23,8 @@ export namespace Nodes {
         }
     }
 
-    export function copyAttribute(copyFrom: Node, copyFromName: string,
-        copyTo: Node, copyToName: string, converter: (val: string) => string = (val) => val) {
+    export function copyAttribute(copyFrom: Element, copyFromName: string,
+        copyTo: Element, copyToName: string, converter: (val: string) => string = (val) => val) {
         const attr = copyFrom.attributes[copyFromName];
         if (Objects.isDefined(attr)) {
             if (typeof (copyTo as any).setAttributeNS === "function") {

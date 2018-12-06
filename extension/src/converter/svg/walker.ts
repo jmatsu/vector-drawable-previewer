@@ -1,5 +1,3 @@
-import { Promise } from "es6-promise";
-
 import { Id } from "../../const/id";
 import { VectorNode } from "../../const/vector_node";
 import { Objects } from "../../util/objects";

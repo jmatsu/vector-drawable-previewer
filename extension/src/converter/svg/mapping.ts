@@ -6,7 +6,7 @@ import { Documents } from "../../util/documents";
 import { Nodes } from "../../util/nodes";
 import { Objects } from "../../util/objects";
 
-export const mapper = (type: VectorNode.Type, node: Node) => {
+export const mapper = (type: VectorNode.Type, node: Element) => {
     switch (type) {
         case VectorNode.Type.Root:
             return Mapping.toRoot(node);
@@ -23,7 +23,7 @@ export const mapper = (type: VectorNode.Type, node: Node) => {
 };
 
 namespace Mapping {
-    export function toRoot(copyFrom: Node): Element {
+    export function toRoot(copyFrom: Element): Element {
         const svg = Nodes.createNode("svg");
         svg.setAttribute("id", Id.svg);
 
@@ -45,7 +45,7 @@ namespace Mapping {
         return svg;
     }
 
-    export function toPath(copyFrom: Node): Element {
+    export function toPath(copyFrom: Element): Element {
         const path = Nodes.createNode("path");
 
         const copyFromAttr = copyFrom.attributes;
@@ -69,7 +69,7 @@ namespace Mapping {
         return path;
     }
 
-    export function toG(copyFrom: Node): Element {
+    export function toG(copyFrom: Element): Element {
         const g = Nodes.createNode("g");
 
         const svgAttrs = SVGNode.G.Attribute;
@@ -82,7 +82,7 @@ namespace Mapping {
         return g;
     }
 
-    function extractRotation(node: Node): string {
+    function extractRotation(node: Element): string {
         const attrs = node.attributes;
         const vecAttrs = VectorNode.Group.Attribute;
 
@@ -97,7 +97,7 @@ namespace Mapping {
         }
     }
 
-    function extractScale(node: Node): string {
+    function extractScale(node: Element): string {
         const attrs = node.attributes;
         const vecAttrs = VectorNode.Group.Attribute;
 
@@ -111,7 +111,7 @@ namespace Mapping {
         }
     }
 
-    function extractTranslate(node: Node): string {
+    function extractTranslate(node: Element): string {
         const attrs = node.attributes;
         const vecAttrs = VectorNode.Group.Attribute;
 

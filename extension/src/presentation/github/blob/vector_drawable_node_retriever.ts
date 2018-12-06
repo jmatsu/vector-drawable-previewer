@@ -5,7 +5,7 @@ import { VectorDrawableNodeRetriever as Retriever } from "../../abstract_vector_
 import { Context } from "../../context";
 
 export class VectorDrawableNodeRetriever extends Retriever {
-    public mayRetrieveNode(ctx?: Context): Node {
+    public mayRetrieveNode(ctx?: Context): Element {
         const node = document.querySelector("div.file");
 
         if (!Objects.isDefined(node)) {
