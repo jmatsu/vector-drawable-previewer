@@ -5,9 +5,10 @@ import { Context } from "../context";
 export class VectorDrawableNodeRetriever extends Retriever {
     public mayRetrieveNode(ctx?: Context): Node {
         const nodes = document.body.childNodes[0].childNodes;
-        if (NodeLists.isVector(nodes)) {
-            ctx.vecBase = nodes[0].parentElement;
-            return nodes[0];
+        const vectorNode = NodeLists.findVectorNode(nodes);
+        if (vectorNode) {
+            ctx.vecBase = vectorNode.parentElement;
+            return vectorNode;
         } else {
             return null;
         }

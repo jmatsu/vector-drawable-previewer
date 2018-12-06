@@ -6,9 +6,10 @@ export class VectorDrawableNodeRetriever extends Retriever {
     public mayRetrieveNode(ctx?: Context): Node {
         const parser = new DOMParser();
         const doc = parser.parseFromString(document.body.childNodes[0].textContent, "application/xml");
-        if (NodeLists.isVector(doc.childNodes)) {
+        const vectorNode = NodeLists.findVectorNode(doc.childNodes);
+        if (vectorNode) {
             ctx.vecBase = document.body;
-            return doc.childNodes[0];
+            return vectorNode;
         } else {
             return null;
         }

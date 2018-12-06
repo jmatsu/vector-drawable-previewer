@@ -1,6 +1,10 @@
 import { Objects } from "./objects";
 
 export namespace Nodes {
+    export function isComment(node: Node): boolean {
+        return node.nodeName === "comment";
+    }
+
     export function isVector(node: Node): boolean {
         return node.nodeName === "vector";
     }
