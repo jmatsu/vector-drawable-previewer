@@ -1,5 +1,3 @@
-import { Promise } from "es6-promise";
-
 import { mapper as SVGMapper } from "./svg/mapping";
 import { Walker as SVGWalker } from "./svg/walker";
 

@@ -5,7 +5,7 @@ import { VectorDrawableNodeRetriever as Retriever } from "../../abstract_vector_
 import { Context } from "../../context";
 
 export class VectorDrawableNodeRetriever extends Retriever {
-    public mayRetrieveNode(ctx?: Context): Node {
+    public mayRetrieveNode(ctx?: Context): Element {
         const node = document.querySelector("div.file");
 
         if (!Objects.isDefined(node)) {
@@ -20,9 +20,10 @@ export class VectorDrawableNodeRetriever extends Retriever {
 
         const parser = new DOMParser();
         const doc = parser.parseFromString(content, "application/xml");
-        if (NodeLists.isVector(doc.childNodes)) {
+        const vectorNode = NodeLists.findVectorNode(doc.childNodes);
+        if (vectorNode) {
             ctx.vecBase = node;
-            return doc.childNodes[0];
+            return vectorNode;
         } else {
             return null;
         }

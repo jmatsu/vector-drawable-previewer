@@ -7,8 +7,7 @@
     "experimentalDecorators": true,
     "removeComments": false,
     "noImplicitAny": false,
-    "module": "commonjs",
-    "compileOnSave": false
+    "module": "commonjs"
   },
   "include": [
     "src/**/*"

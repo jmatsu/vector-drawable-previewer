@@ -1,5 +1,3 @@
-import { Promise } from "es6-promise";
-
 import { Context } from "./context";
 
 export abstract class SVGPresenter {

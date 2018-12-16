@@ -25,7 +25,7 @@ export class VectorDrawableNodeRetriever extends Retriever {
         return this.filenameNodes.length;
     }
 
-    public mayRetrieveNode(ctx?: Context): Node {
+    public mayRetrieveNode(ctx?: Context): Element {
         const fileNode = this.filenameNodes[ctx.index].parentElement.parentElement.parentElement.querySelector("div.js-file-content");
 
         if (!Objects.isDefined(fileNode)) {
@@ -40,9 +40,10 @@ export class VectorDrawableNodeRetriever extends Retriever {
 
         const parser = new DOMParser();
         const doc = parser.parseFromString(content, "application/xml");
-        if (NodeLists.isVector(doc.childNodes)) {
+        const vectorNode = NodeLists.findVectorNode(doc.childNodes);
+        if (vectorNode) {
             ctx.vecBase = fileNode.parentElement;
-            return doc.childNodes[0];
+            return vectorNode;
         } else {
             return null;
         }
