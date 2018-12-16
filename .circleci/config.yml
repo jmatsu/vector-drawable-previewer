@@ -27,13 +27,14 @@ jobs:
       - run: npm run lint
       - run: npm run tsc
       - run: npm run browserify
-      - run: zip -r build-$CIRCLE_BUILD_NUM.zip package
+      - run: |
+          mkdir artifacts
+          zip -r build-$CIRCLE_BUILD_NUM.zip package
+          cp -r package artifacts/
+          cp build-$CIRCLE_BUILD_NUM.zip artifacts/
       - store_artifacts:
-          path: package
-          destination: package
-      - store_artifacts:
-          path: build-{{ Environment.CIRCLE_BUILD_NUM }}.zip
-          destination: extension.zip
+          path: artifacts
+          destination: artifacts
 
 workflows:
   version: 2.1
