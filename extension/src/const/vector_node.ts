@@ -6,7 +6,11 @@ export namespace VectorNode {
     }
 
     export class Data {
-        constructor(public type: Type, public node: Node) {}
+        constructor(public type: Type, public element: Element) {}
+
+        public hasChildren(): boolean {
+            return this.type === Type.Group
+        }
     }
 
     export namespace Root {

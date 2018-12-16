@@ -1,29 +1,28 @@
 import { Githubs } from "../../../util/githubs";
-import { NodeLists } from "../../../util/node_lists";
-import { Objects } from "../../../util/objects";
 import { VectorDrawableNodeRetriever as Retriever } from "../../abstract_vector_drawable_node_retriever";
 import { Context } from "../../context";
 
 export class VectorDrawableNodeRetriever extends Retriever {
-    public mayRetrieveNode(ctx?: Context): Element {
+    public mayRetrieveNode(ctx: Context): Element | null {
         const node = document.querySelector("div.file");
 
-        if (!Objects.isDefined(node)) {
+        if (!node) {
             return null;
         }
 
         const content = Githubs.obtainFromFilePreview(node);
 
-        if (!Objects.isDefined(content)) {
+        if (!content) {
             return null;
         }
 
         const parser = new DOMParser();
         const doc = parser.parseFromString(content, "application/xml");
-        const vectorNode = NodeLists.findVectorNode(doc.childNodes);
-        if (vectorNode) {
+        const vdElement = doc.childNodes.findVectorDrawbleElement();
+
+        if (vdElement) {
             ctx.vecBase = node;
-            return vectorNode;
+            return vdElement;
         } else {
             return null;
         }

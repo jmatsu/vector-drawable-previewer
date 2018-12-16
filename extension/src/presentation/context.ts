@@ -1,5 +1,5 @@
 export class Context {
-    public vecBase: Element;
+    public vecBase: Element | null = null;
 
     constructor(
         public readonly index: number,

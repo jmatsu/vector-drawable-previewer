@@ -1,15 +1,15 @@
-import { NodeLists } from "../../util/node_lists";
 import { VectorDrawableNodeRetriever as Retriever } from "../abstract_vector_drawable_node_retriever";
 import { Context } from "../context";
 
 export class VectorDrawableNodeRetriever extends Retriever {
-    public mayRetrieveNode(ctx?: Context): Element {
+    public mayRetrieveNode(ctx: Context): Element | null {
         const parser = new DOMParser();
-        const doc = parser.parseFromString(document.body.childNodes[0].textContent, "application/xml");
-        const vectorNode = NodeLists.findVectorNode(doc.childNodes);
-        if (vectorNode) {
+        const doc = parser.parseFromString(document.body.childNodes[0].textContent || "", "application/xml");
+        const vdElement = doc.childNodes.findVectorDrawbleElement();
+
+        if (vdElement) {
             ctx.vecBase = document.body;
-            return vectorNode;
+            return vdElement;
         } else {
             return null;
         }

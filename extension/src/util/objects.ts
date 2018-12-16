@@ -1,13 +1,7 @@
-import { Logger } from "./logger";
-
 export namespace Objects {
     let wait = false;
 
-    export function isDefined(obj: any): boolean {
-        return obj !== null && obj !== undefined;
-    }
-
-    export function throttleAfter(f, delay: number) {
+    export function throttleAfter(f: Function, delay: number) {
         return () => {
             if (!wait) {
                 wait = true;

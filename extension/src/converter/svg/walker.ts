@@ -1,18 +1,17 @@
 import { Id } from "../../const/id";
 import { VectorNode } from "../../const/vector_node";
-import { Objects } from "../../util/objects";
 
 export class Walker {
-    public walk(vd: Node, applier: (VectorNodeType, Node) => Element): Promise<Node> {
+    public walk(data: VectorNode.Data, applier: (data: VectorNode.Data) => SVGElement | null): Promise<SVGElement> {
         return new Promise((resolve, reject) => {
-            const root = applier(VectorNode.Type.Root, vd);
+            const root = applier(data);
 
-            if (!Objects.isDefined(root)) {
+            if (!root) {
                 return reject(new Error("Failed to create root node."));
             }
 
             try {
-                this.iterate(root.querySelector(`#${Id.topGroup}`), vd.childNodes, applier);
+                this.iterate(root.querySelector(`#${Id.topGroup}`), data.element.childNodes, applier);
                 return resolve(root);
             } catch (err) {
                 return reject(err);
@@ -20,30 +19,38 @@ export class Walker {
         });
     }
 
-    private iterate(parent: Node, nodes: NodeList, applier: (VectorNodeType, Element) => Node) {
-        for (const data of this.dataGenerator(nodes)) {
-            const n = applier(data.type, data.node);
+    private iterate(parent: Node | null, nodes: NodeList, applier: (data: VectorNode.Data) => SVGElement | null) {
+        if (!parent) {
+            return
+        }
 
-            if (!Objects.isDefined(n)) {
+        for (const data of this.dataGenerator(nodes)) {
+            const n = applier(data);
+
+            if (!n) {
                 throw new Error(`Failed to handle ${data.type} node.`);
             }
 
             parent.appendChild(n);
 
-            if (data.type === VectorNode.Type.Group) {
-                this.iterate(n, data.node.childNodes, applier);
+            if (data.hasChildren()) {
+                this.iterate(n, data.element.childNodes, applier);
             }
         }
     }
 
     private *dataGenerator(nodes: NodeList) {
         for (const node of nodes) {
+            if (!node) {
+                throw new Error("node must not be null")
+            }
+
             switch (node.nodeName) {
                 case "path":
-                    yield new VectorNode.Data(VectorNode.Type.Path, node);
+                    yield new VectorNode.Data(VectorNode.Type.Path, node as Element);
                     continue;
                 case "group":
-                    yield new VectorNode.Data(VectorNode.Type.Group, node);
+                    yield new VectorNode.Data(VectorNode.Type.Group, node as Element);
                     continue;
                 case "#text":
                     // skip empty string
