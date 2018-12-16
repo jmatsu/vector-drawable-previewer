@@ -1,6 +1,4 @@
-import { Promise } from "es6-promise";
-
-import { VectorDrawableConverter } from "../converter/vector_drawable_conveter";
+import { VectorDrawableConverter } from "../converter/vector_drawable_converter";
 import { Context } from "../presentation/context";
 import { Package } from "../presentation/package_template";
 import { Logger } from "../util/logger";
@@ -16,17 +14,15 @@ export class ShowSVGScenario {
 
         for (let i = 0; i < num; i++) {
             const context = new Context(i);
+
             promises[i] = this.pkg.retriever.retrieve(
                 context,
-            ).then((n) => {
-                return new VectorDrawableConverter().convertToSVG(n);
-            }, (err) => {
-                Logger.log(err);
-            }).then((n) => {
-                return this.pkg.presenter.present(context, n);
-            }, (err) => {
-                Logger.log(err);
+            ).then((element) => {
+                return new VectorDrawableConverter().convertToSVG(element);
+            }).then((svg) => {
+                return this.pkg.presenter.present(context, svg);
             });
+            promises[i].catch((err) => Logger.log(err));
         }
 
         return Promise.all(promises);

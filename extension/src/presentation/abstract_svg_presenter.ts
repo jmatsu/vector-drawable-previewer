@@ -1,11 +1,9 @@
-import { Promise } from "es6-promise";
-
 import { Context } from "./context";
 
 export abstract class SVGPresenter {
-    protected abstract show(context: Context, svg: Node): boolean;
+    protected abstract show(context: Context, svg: SVGElement): boolean;
 
-    public present(context: Context, svg: Node): Promise<Context> {
+    public present(context: Context, svg: SVGElement): Promise<Context> {
         return new Promise((resolve, reject) => {
             if (this.show(context, svg)) {
                 resolve(context);

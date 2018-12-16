@@ -1,24 +1,22 @@
-import { Promise } from "es6-promise";
-
 import { Context } from "./context";
 
 export abstract class VectorDrawableNodeRetriever {
-    public node?: Node;
+    public node: Element | null = null;
 
-    public abstract mayRetrieveNode(ctx?: Context): Node;
+    public abstract mayRetrieveNode(ctx: Context | null): Element | null;
 
     public estimateCondidates(): number {
         return 1;
     }
 
-    public retrieve(ctx: Context = null): Promise<Node> {
+    public retrieve(ctx: Context): Promise<Element> {
         return new Promise((resolve, reject) => {
             this.node = this.mayRetrieveNode(ctx);
 
-            if (this.node !== null && this.node !== undefined) {
+            if (this.node) {
                 resolve(this.node);
             } else {
-                reject(new Error("Not vector file."));
+                reject(new Error("not vector file"));
             }
         });
     }

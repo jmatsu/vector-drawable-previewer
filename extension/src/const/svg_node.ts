@@ -24,4 +24,10 @@ export namespace SVGNode {
             export const FillColorOption = "fill";
         }
     }
+
+    export namespace G {
+        export namespace Attribute {
+            export const Transform = "transform";
+        }
+    }
 }

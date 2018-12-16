@@ -1,38 +1,64 @@
-import { Promise } from "es6-promise";
-
+import { Id } from "../../const/id";
 import { VectorNode } from "../../const/vector_node";
-import { Objects } from "../../util/objects";
 
 export class Walker {
-    public walk(vd: Node, applier: (VectorNodeType, Node) => Node): Promise<Node> {
+    public walk(data: VectorNode.Data, applier: (data: VectorNode.Data) => SVGElement | null): Promise<SVGElement> {
         return new Promise((resolve, reject) => {
-            const root = applier(VectorNode.Type.Root, vd);
+            const root = applier(data);
 
-            if (!Objects.isDefined(root)) {
+            if (!root) {
                 return reject(new Error("Failed to create root node."));
             }
 
-            const nodes = vd.childNodes;
+            try {
+                this.iterate(root.querySelector(`#${Id.topGroup}`), data.element.childNodes, applier);
+                return resolve(root);
+            } catch (err) {
+                return reject(err);
+            }
+        });
+    }
 
-            for (const node of nodes) {
-                switch (node.nodeName) {
-                    case "path":
-                        const path = applier(VectorNode.Type.Path, node);
-                        if (!Objects.isDefined(path)) {
-                            return reject(new Error("Failed to handle path node."));
-                        } else {
-                            root.appendChild(path);
-                        }
-                        break;
-                    case "#text":
-                        // skip empty string
-                        continue;
-                    default:
-                        return reject(new Error("Found unsupported element <" + node.nodeName + ">"));
-                }
+    private iterate(parent: Node | null, nodes: NodeList, applier: (data: VectorNode.Data) => SVGElement | null) {
+        if (!parent) {
+            return
+        }
+
+        for (const data of this.dataGenerator(nodes)) {
+            const n = applier(data);
+
+            if (!n) {
+                throw new Error(`Failed to handle ${data.type} node.`);
             }
 
-            return resolve(root);
-        });
+            parent.appendChild(n);
+
+            if (data.hasChildren()) {
+                this.iterate(n, data.element.childNodes, applier);
+            }
+        }
+    }
+
+    private *dataGenerator(nodes: NodeList) {
+        for (const node of nodes) {
+            if (!node) {
+                throw new Error("node must not be null")
+            }
+
+            switch (node.nodeName) {
+                case "path":
+                    yield new VectorNode.Data(VectorNode.Type.Path, node as Element);
+                    continue;
+                case "group":
+                    yield new VectorNode.Data(VectorNode.Type.Group, node as Element);
+                    continue;
+                case "#text":
+                case "#comment":
+                    // skip empty string and comment
+                    continue;
+                default:
+                    throw new Error("Found unsupported element <" + node.nodeName + ">");
+            }
+        }
     }
 }

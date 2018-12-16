@@ -40,9 +40,14 @@ export namespace ExtensionComponent {
             return false;
         }
 
-        const node = nodes[0];
+        const node = nodes[0]
+
+        if (!(node instanceof Element)) {
+            return false;
+        }
+
         /* tslint:disable:no-string-literal */
-        return node.nodeName === "div" && node.attributes["id"].value === "webkit-xml-viewer-source-xml";
+        return node.nodeName === "div" && node.getAttrValue("id") === "webkit-xml-viewer-source-xml";
         /* tsslint:enable:no-string-literal */
     }
 

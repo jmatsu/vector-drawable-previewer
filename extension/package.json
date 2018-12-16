@@ -7,6 +7,7 @@
   "scripts": {
     "tsc": "tsc",
     "tsc:w": "tsc -w",
+    "tsc:ci": "tsc -d true --declarationMap true --declarationDir declarations",
     "clean": "find src -name \"*.js\" -print0|xargs -0 -I{} rm {} && find src -name \"*.js.map\" -print0|xargs -0 -I{} rm {}",
     "dry-clean": "find src -name \"*.js\"|xargs && find src -name \"*.js.map\"|xargs",
     "lint": "tslint --project ./tsconfig.json",
@@ -20,6 +21,6 @@
   "devDependencies": {
     "browserify": "13.0.1",
     "tslint": "4.2.0",
-    "typescript": "^2.1.4"
+    "typescript": "^2.9.2"
   }
 }

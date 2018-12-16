@@ -1,14 +1,13 @@
-import { NodeLists } from "../../util/node_lists";
 import { VectorDrawableNodeRetriever as Retriever } from "../abstract_vector_drawable_node_retriever";
 import { Context } from "../context";
 
 export class VectorDrawableNodeRetriever extends Retriever {
-    public mayRetrieveNode(ctx?: Context): Node {
-        const nodes = document.body.childNodes;
+    public mayRetrieveNode(ctx: Context): Element | null {
+        const vdElement = document.body.childNodes.findVectorDrawbleElement();
 
-        if (NodeLists.isVector(nodes)) {
+        if (vdElement) {
             ctx.vecBase = document.body;
-            return nodes[0];
+            return vdElement;
         } else {
             return null;
         }
