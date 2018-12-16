@@ -53,7 +53,8 @@ export class Walker {
                     yield new VectorNode.Data(VectorNode.Type.Group, node as Element);
                     continue;
                 case "#text":
-                    // skip empty string
+                case "#comment":
+                    // skip empty string and comment
                     continue;
                 default:
                     throw new Error("Found unsupported element <" + node.nodeName + ">");

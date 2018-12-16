@@ -47,25 +47,20 @@ export namespace Githubs {
     }
 
     export function obtainFromFileDiff(file: Element): string | null {
-        const indices = file.querySelectorAll("table.diff-table td:nth-child(2)");
+        const indices = file.querySelectorAll("table.diff-table td:nth-child(4)");
         if (!indices || indices.length < 2) {
             Logger.log(`!indices || indices.length < 2 => ${!indices} || ${indices.length < 2}`);
             return null;
         }
 
         let content = "";
-        let skip = true;
 
         for (const index of indices) {
-            if (skip) {
-                skip = false;
-                continue;
-            }
             if (index.hasClass("empty-cell")) {
                 Logger.log("skip empty cell");
                 continue;
             }
-            const line = index.parentElement!.querySelector("td:nth-child(3)");
+            const line = index.parentElement!.querySelector("td:nth-child(4)");
             const span = line && line.querySelector("span.blob-code-inner");
 
             if (!span) {
