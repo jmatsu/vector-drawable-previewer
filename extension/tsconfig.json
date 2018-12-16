@@ -6,7 +6,12 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "removeComments": false,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
+    "alwaysStrict": true,
+    "keyofStringsOnly": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
     "module": "commonjs"
   },
   "include": [
