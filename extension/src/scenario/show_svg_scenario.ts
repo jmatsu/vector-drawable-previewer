@@ -22,7 +22,7 @@ export class ShowSVGScenario {
             }).then((n) => {
                 return this.pkg.presenter.present(context, n);
             });
-            promises[i].catch(err => Logger.log(err));
+            promises[i].catch((err) => Logger.log(err));
         }
 
         return Promise.all(promises);
