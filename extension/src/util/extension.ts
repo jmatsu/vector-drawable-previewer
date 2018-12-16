@@ -9,15 +9,21 @@ interface Element {
     parentElementOf(nth: number): Element | null
 }
 
-Element.prototype.isComment = (): boolean => {
+Element.prototype.isComment = function(): boolean {
     return this.nodeName === "comment"
 }
 
-Element.prototype.isVector = (): boolean => {
+Element.prototype.isVector = function(): boolean {
     return this.nodeName === "vector"
 }
 
-Element.prototype.setAttrValue = (name: string, value: any): void => {
+Element.prototype.setAttr = function(name: string, other: Attr | null): void {
+    if (other) {
+        this.setAttrValue(name, other.value)
+    }
+}
+
+Element.prototype.setAttrValue = function(name: string, value: any): void {
     if (value) {
         if (typeof (this as any).setAttributeNS === "function") {
             (this as any).setAttributeNS(null, name, value)
@@ -27,11 +33,11 @@ Element.prototype.setAttrValue = (name: string, value: any): void => {
     }
 }
 
-Element.prototype.getAttr = (name: string): Attr | null => {
+Element.prototype.getAttr = function(name: string): Attr | null {
     return (this.attributes as any)[name]
 }
 
-Element.prototype.getAttrValue = (name: string): string | null => {
+Element.prototype.getAttrValue = function(name: string): string | null {
     const attr = this.getAttr(name)
 
     if (!attr) {
@@ -41,12 +47,12 @@ Element.prototype.getAttrValue = (name: string): string | null => {
     return attr.value
 }
 
-Element.prototype.hasClass = (name: string): boolean => {
+Element.prototype.hasClass = function(name: string): boolean {
     return new RegExp("(\\s|^)" + name + "(\\s|$)").test(this.className)
 }
 
-Element.prototype.parentElementOf = (nth: number): Element | null => {
-    let element = this
+Element.prototype.parentElementOf = function(nth: number): Element | null {
+    let element: Element | null = this
 
     for (let i = 0; i < nth; i++) {
         element = element && element.parentElement
@@ -57,23 +63,14 @@ Element.prototype.parentElementOf = (nth: number): Element | null => {
 
 interface NodeList {
     findVectorDrawbleElement(): Element | null
-    elements(): IterableIterator<Element>;
 }
 
-NodeList.prototype.findVectorDrawbleElement = () : Element | null => {
-    for (const element of this.elements) {
-        if (element.isVector()) {
-            return element
+NodeList.prototype.findVectorDrawbleElement = function(): Element | null {
+    for (const node of this) {
+        if (node instanceof Element && node.isVector()) {
+            return node
         }
     }
 
     return null
-}
-
-NodeList.prototype.elements = function*(): IterableIterator<Element> {
-    for (const node of this) {
-        if (node instanceof Element) {
-            yield node
-        }
-    }
 }
