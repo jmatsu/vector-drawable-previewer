@@ -25,7 +25,7 @@ jobs:
           paths:
             - node_modules
       - run: npm run lint
-      - run: npm run tsc
+      - run: npm run tsc -d true --declarationMap true --declarationDir declarations
       - run: npm run browserify
       - run: |
           mkdir artifacts
@@ -35,6 +35,9 @@ jobs:
       - store_artifacts:
           path: artifacts
           destination: artifacts
+      - store_artifacts:
+          path: declarations
+          destination: declarations
 
 workflows:
   version: 2.1
