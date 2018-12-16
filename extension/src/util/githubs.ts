@@ -2,11 +2,11 @@ import { Logger } from "./logger";
 
 export namespace Githubs {
     export function isGithubRepositoryPage() {
-        return /https?:\/\/github\.com\/[^/]+\/[^/]+.*/.test(location.href);
+        return /https?:\/\/github\.com\/[^\/]+\/[^\/]+.*/.test(location.href);
     }
 
     export function isGithubBlobPage(): boolean {
-        return /https?:\/\/github\.com\/[^/]+\/[^/]+\/blob\/.*$/.test(location.href);
+        return /https?:\/\/github\.com\/[^\/]+\/[^\/]+\/blob\/.*$/.test(location.href);
     }
 
     export function getAjaxContainer() {
