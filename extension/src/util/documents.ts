@@ -6,9 +6,6 @@ export namespace Documents {
     }
 
     export function createPreviewElement(svg: Node): Element {
-        const width = +(svg as SVGElement).getAttributeNS(null, "width").replace("px", "");
-        const height = +(svg as SVGElement).getAttributeNS(null, "height").replace("px", "");
-
         const root = document.createElement("div");
         root.setAttribute("style", "padding: 10px;");
 

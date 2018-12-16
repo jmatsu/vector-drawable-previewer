@@ -2,7 +2,7 @@ import { VectorDrawableNodeRetriever as Retriever } from "../abstract_vector_dra
 import { Context } from "../context";
 
 export class VectorDrawableNodeRetriever extends Retriever {
-    public mayRetrieveNode(ctx?: Context): Element {
+    public mayRetrieveNode(_: Context): Element | null {
         return null;
     }
 }

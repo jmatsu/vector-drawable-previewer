@@ -1,4 +1,4 @@
-import { VectorDrawableConverter } from "../converter/vector_drawable_conveter";
+import { VectorDrawableConverter } from "../converter/vector_drawable_converter";
 import { Context } from "../presentation/context";
 import { Package } from "../presentation/package_template";
 import { Logger } from "../util/logger";
@@ -17,10 +17,10 @@ export class ShowSVGScenario {
 
             promises[i] = this.pkg.retriever.retrieve(
                 context,
-            ).then((n) => {
-                return new VectorDrawableConverter().convertToSVG(n);
-            }).then((n) => {
-                return this.pkg.presenter.present(context, n);
+            ).then((element) => {
+                return new VectorDrawableConverter().convertToSVG(element);
+            }).then((svg) => {
+                return this.pkg.presenter.present(context, svg);
             });
             promises[i].catch((err) => Logger.log(err));
         }

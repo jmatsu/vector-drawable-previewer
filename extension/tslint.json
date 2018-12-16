@@ -17,6 +17,8 @@
       "check-format",
       "allow-leading-underscore",
       "allow-pascal-case"
-    ]
+    ],
+    "semicolon": [false, "always"],
+    "only-arrow-functions": false
   }
 }
