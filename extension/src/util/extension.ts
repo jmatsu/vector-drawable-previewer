@@ -62,15 +62,31 @@ Element.prototype.parentElementOf = function(nth: number): Element | null {
 }
 
 interface NodeList {
-    findVectorDrawbleElement(): Element | null
+    findVectorDrawbleElement(nth?: number): Element | null
 }
 
-NodeList.prototype.findVectorDrawbleElement = function(): Element | null {
-    for (const node of this) {
-        if (node instanceof Element && node.isVector()) {
-            return node
-        }
-    }
+NodeList.prototype.findVectorDrawbleElement = function(nth?: number): Element | null {
+    const depth = nth || 1
 
-    return null
+    const findVDOnLayer = (items: Array<NodeList>, remaningDepth: number): Element | null => {
+        if (items.length == 0 || remaningDepth == 0) {
+            return null
+        }
+
+        const next: Array<NodeList> = []
+
+        for (const nodeList of items) {
+            for (const node of nodeList) {
+                if (node instanceof Element && node.isVector()) {
+                    return node
+                }
+
+                next.push(node.childNodes)
+            }
+        }
+
+        return findVDOnLayer(next, remaningDepth - 1)
+    };
+
+    return findVDOnLayer([this], depth)
 }

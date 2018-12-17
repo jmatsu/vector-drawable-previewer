@@ -42,8 +42,8 @@ export class VectorDrawableNodeRetriever extends Retriever {
         }
 
         const parser = new DOMParser();
-        const doc = parser.parseFromString(content, "application/xml");
-        const vdElement = doc.childNodes.findVectorDrawbleElement();
+        const doc = parser.parseFromString(`<div>${content}</div>`, "application/xml");
+        const vdElement = doc.childNodes.findVectorDrawbleElement(3);
 
         if (vdElement) {
             ctx.vecBase = fileNode.parentElement!
