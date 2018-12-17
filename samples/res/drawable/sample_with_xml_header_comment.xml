@@ -14,13 +14,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="@dimen/stream_button_icon_size"
-    android:height="@dimen/stream_button_icon_size"
+    android:width="48dp"
+    android:height="48dp"
     android:viewportWidth="48"
     android:viewportHeight="48">
 
     <path
-        android:fillColor="@android:color/black"
+        android:fillColor="#000000"
         android:pathData="M12 38h8V10h-8v28zm16-28v28h8V10h-8z" />
     <path
         android:pathData="M0 0h48v48H0z" />
