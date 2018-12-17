@@ -81,7 +81,9 @@ NodeList.prototype.findVectorDrawbleElement = function(nth?: number): Element | 
                     return node
                 }
 
-                next.push(node.childNodes)
+                if (node) {
+                    next.push(node.childNodes)
+                }
             }
         }
 
