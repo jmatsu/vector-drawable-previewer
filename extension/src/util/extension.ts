@@ -68,12 +68,12 @@ interface NodeList {
 NodeList.prototype.findVectorDrawbleElement = function(nth?: number): Element | null {
     const depth = nth || 1
 
-    const findVDOnLayer = (items: Array<NodeList>, remaningDepth: number): Element | null => {
-        if (items.length == 0 || remaningDepth == 0) {
+    const findVDOnLayer = (items: NodeList[], remaningDepth: number): Element | null => {
+        if (items.length === 0 || remaningDepth === 0) {
             return null
         }
 
-        const next: Array<NodeList> = []
+        const next: NodeList[] = []
 
         for (const nodeList of items) {
             for (const node of nodeList) {
