@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+
+  "name": "VectorDrawable Previewer",
+  "description": "This extension can preview the vector drawable when you open it",
+  "version" : "1.1.0",
+  "author": "Jumpei Matsuda @jmatsu",
+  "icons": {
+      "16": "icon_16.png",
+      "32": "icon_32.png",
+      "48": "icon_48.png",
+      "128": "icon_128.png" 
+  },
+  "homepage_url": "https://jmatsu.github.io/vector-drawable-previewer/",
+
+  "background": {
+    "scripts": ["js/background.js"],
+    "persistent": false
+  },
+
+  "content_scripts": [
+      {
+          "matches": [
+            "https://github.com/*"
+          ],
+          "js": ["js/vendor.js", "js/content_script.js"]
+      }
+  ],
+
+  "permissions": [
+    "tabs"
+  ]
+}

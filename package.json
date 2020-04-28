@@ -1,0 +1,40 @@
+{
+  "name": "vdp",
+  "version": "1.0.0",
+  "description": "A Chrome Extension can show the vector drawable when you open it",
+  "main": "index.js",
+  "scripts": {
+    "watch": "webpack --config webpack/webpack.dev.js --watch",
+    "build": "yarn clean; webpack --config webpack/webpack.prod.js",
+    "clean": "rimraf dist",
+    "package": "yarn build && zip -r extension.zip dist/;"
+  },
+  "author": "Jumpei Matsuda",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmatsu/vector-drawable-previewer"
+  },
+  "dependencies": {
+    "jquery": "^3.4.1"
+  },
+  "devDependencies": {
+    "@types/chrome": "~0.0.91",
+    "@types/jquery": "^3.3.30",
+    "@typescript-eslint/eslint-plugin": "^2.6.1",
+    "@typescript-eslint/parser": "^2.6.1",
+    "copy-webpack-plugin": "^5.0.3",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-jest": "^23.0.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "prettier": "^1.18.2",
+    "rimraf": "^3.0.0",
+    "ts-jest": "^24.1.0",
+    "ts-loader": "^6.2.1",
+    "typescript": "~3.7.2",
+    "webpack": "~4.41.2",
+    "webpack-cli": "~3.3.10",
+    "webpack-merge": "~4.2.1"
+  }
+}

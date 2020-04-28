@@ -1,46 +1,49 @@
 version: 2.1
 
 executors:
-  default:
+  node:
     docker:
-      - image: circleci/node:8.10
-    working_directory: ~/vector-drawable-previwer/extension
+      - image: circleci/node:12.12.0-stretch
+
+commands:
+  cache_yarn:
+    parameters:
+      cache_version:
+        type: string
+        default: v1
+    steps:
+      - restore_cache:
+          keys:
+          - npm-cache-{{ checksum "./yarn.lock" }}-<< parameters.cache_version >>-
+          - npm-cache-{{ checksum "./yarn.lock" }}-
+      - run: yarn install --frozen-lockfile
+      - save_cache:
+          paths:
+          - ~/.cache/yarn
+          key: npm-cache-{{ checksum "./yarn.lock" }}-<< parameters.cache_version >>-
 
 jobs:
   build:
-    executor: default
+    executor: node
     steps:
-      - checkout:
-          path: ~/vector-drawable-previwer
-      - restore_cache:
-          keys:
-            - node-v1-{{ checksum "package-lock.json" }}
-            - node-v1-
-      - run: |
-          npm config set spin=false
-          npm config set progress=false
-          npm install
-      - save_cache:
-          key: node-v1-{{ checksum "package-lock.json" }}
-          paths:
-            - node_modules
-      - run: npm run tsc:ci
-      - run: npm run lint
-      - run: npm run browserify
-      - run: |
-          mkdir artifacts
-          zip -r build-$CIRCLE_BUILD_NUM.zip package
-          cp -r package artifacts/
-          cp build-$CIRCLE_BUILD_NUM.zip artifacts/
+      - checkout
+      - cache_yarn
+      - run: yarn build
+      - run: yarn eslint src/js --ext .ts
+  package:
+    executor: node
+    steps:
+      - checkout
+      - cache_yarn
+      - run: yarn package
       - store_artifacts:
-          path: artifacts
-          destination: artifacts
-      - store_artifacts:
-          path: declarations
-          destination: declarations
+          path: extension.zip
 
 workflows:
-  version: 2.1
-  build_and_test:
+  version: 2
+  on_commit:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              ignore: /master/
