@@ -8,7 +8,8 @@ export class SVGPresenter extends Presenter {
             return false
         }
 
-        const container = context.vecBase.querySelector("div.file-header")
-        return !!(container && container.appendChild(Documents.createPreviewElement(svg)));
+        context.vecBase.prepend(Documents.createPreviewElement(svg));
+
+        return true;
     }
 }

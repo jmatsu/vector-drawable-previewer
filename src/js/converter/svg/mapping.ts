@@ -1,5 +1,3 @@
-import "../../util/extension"
-
 import { Id } from "../../const/id";
 import { SVGNode } from "../../const/svg_node";
 import { VectorNode } from "../../const/vector_node";

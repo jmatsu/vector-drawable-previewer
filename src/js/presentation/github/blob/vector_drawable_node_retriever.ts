@@ -4,7 +4,7 @@ import { Context } from "../../context";
 
 export class VectorDrawableNodeRetriever extends Retriever {
     public mayRetrieveNode(ctx: Context): Element | null {
-        const node = document.querySelector("div.file");
+        const node = document.querySelector("div.blob-wrapper");
 
         if (!node) {
             return null;

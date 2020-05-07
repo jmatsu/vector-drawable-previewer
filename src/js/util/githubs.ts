@@ -1,5 +1,3 @@
-import { Logger } from "./logger";
-
 export namespace Githubs {
     export function isGithubRepositoryPage() {
         return /https?:\/\/github\.com\/[^\/]+\/[^\/]+.*/.test(location.href);
@@ -17,7 +15,6 @@ export namespace Githubs {
         const codes = file.querySelectorAll("td.blob-code");
 
         if (!codes || codes.length === 0) {
-            Logger.log(`!codes || codes.length === 0 => ${!codes} || ${codes.length === 0}`);
             return null;
         }
 
@@ -27,9 +24,6 @@ export namespace Githubs {
             content += `${digTextRow(code)}\n`;
         }
 
-        Logger.log("---- begin content ----");
-        Logger.log(content);
-        Logger.log("---- end content ----");
         return content;
     }
 
@@ -42,14 +36,13 @@ export namespace Githubs {
                 text += digTextRow(node);
             }
         }
-        Logger.log(`row text: ${text}`);
+
         return text;
     }
 
     export function obtainFromFileDiff(file: Element): string | null {
         const indices = file.querySelectorAll("table.diff-table td:nth-child(4)");
         if (!indices || indices.length < 2) {
-            Logger.log(`!indices || indices.length < 2 => ${!indices} || ${indices.length < 2}`);
             return null;
         }
 
@@ -57,15 +50,12 @@ export namespace Githubs {
 
         for (const index of indices) {
             if (index.hasClass("empty-cell")) {
-                Logger.log("skip empty cell");
                 continue;
             }
             const line = index.parentElement!.querySelector("td:nth-child(4)");
             const span = line && line.querySelector("span.blob-code-inner");
 
             if (!span) {
-                Logger.log("span is not found");
-                Logger.log(line);
                 return null;
             }
 
@@ -78,9 +68,6 @@ export namespace Githubs {
             }
         }
 
-        Logger.log("---- begin content ----");
-        Logger.log(content);
-        Logger.log("---- end content ----");
         return content;
     }
 }

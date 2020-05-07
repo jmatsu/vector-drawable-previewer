@@ -1,4 +1,3 @@
-import { Documents } from "../../util/documents";
 import { SVGPresenter as Presenter } from "../abstract_svg_presenter";
 import { Context } from "../context";
 

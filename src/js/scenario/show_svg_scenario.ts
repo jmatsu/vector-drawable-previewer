@@ -1,7 +1,6 @@
 import { VectorDrawableConverter } from "../converter/vector_drawable_converter";
 import { Context } from "../presentation/context";
 import { Package } from "../presentation/package_template";
-import { Logger } from "../util/logger";
 
 export class ShowSVGScenario {
     constructor(private pkg: Package) {
@@ -22,7 +21,6 @@ export class ShowSVGScenario {
             }).then((svg) => {
                 return this.pkg.presenter.present(context, svg);
             });
-            promises[i].catch((err) => Logger.log(err));
         }
 
         return Promise.all(promises);
