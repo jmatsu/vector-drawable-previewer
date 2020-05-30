@@ -43,7 +43,5 @@ workflows:
   version: 2
   on_commit:
     jobs:
-      - build:
-          filters:
-            branches:
-              ignore: /master/
+      - build
+      - package
