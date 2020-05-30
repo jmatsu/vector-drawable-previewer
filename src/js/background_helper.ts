@@ -8,10 +8,14 @@ const isLocalFile: Detector = (url) => {
   } else {
     return null;
   }
-}
+};
 
 const isGitHubBlob: Detector = (url) => {
-  if (/https?:\/\/github\.com\/[^/]+\/[^/]+\/blob\/.+?\/res\/[^/]+\/[^.]+\.xml\??.*$/.test(url)) {
+  if (
+    /https?:\/\/github\.com\/[^/]+\/[^/]+\/blob\/.+?\/res\/[^/]+\/[^.]+\.xml\??.*$/.test(
+      url
+    )
+  ) {
     return RemoteMessageType.GitHubBlob;
   } else {
     return null;
@@ -34,9 +38,4 @@ const isGitHubRaw: Detector = (url) => {
   }
 };
 
-export {
-  isGitHubBlob,
-  isGitHubDiff,
-  isGitHubRaw,
-  isLocalFile,
-};
+export { isGitHubBlob, isGitHubDiff, isGitHubRaw, isLocalFile };

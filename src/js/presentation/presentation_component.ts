@@ -6,4 +6,12 @@ import { RawPackage } from "./raw/package";
 import { UnknownPackage } from "./unknown/package";
 import { XmlViewerPackage } from "./xmlviewer/package";
 
-export { Package, DirectPackage, RawPackage, UnknownPackage, XmlViewerPackage, GithubDiffPackage, GithubBlobPackage };
+export {
+  Package,
+  DirectPackage,
+  RawPackage,
+  UnknownPackage,
+  XmlViewerPackage,
+  GithubDiffPackage,
+  GithubBlobPackage,
+};

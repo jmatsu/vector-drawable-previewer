@@ -1,7 +1,7 @@
 import "./extension";
 import RemoteMessageType from "./remote_message_type";
 
-import { 
+import {
   isGitHubBlob,
   isGitHubDiff,
   isGitHubRaw,
@@ -15,10 +15,10 @@ const detectors = [
   isGitHubDiff,
   isGitHubRaw,
   isLocalFile,
-  fallback
-]
+  fallback,
+];
 
-chrome.tabs.onUpdated.addListener(function(_tabId, changeInfo, tab) {
+chrome.tabs.onUpdated.addListener(function (_tabId, changeInfo, tab) {
   if (tab.active && changeInfo.status === "complete") {
     for (let detector of detectors) {
       const type = detector(tab.url);

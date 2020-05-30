@@ -32,13 +32,16 @@ const isXmlViewer: Detector = (nodes) => {
     return null;
   }
 
-  const node = nodes[0]
+  const node = nodes[0];
 
   if (!(node instanceof Element)) {
-      return null;
+    return null;
   }
 
-  if (node.nodeName === "div" && node.getAttrValue("id") === "webkit-xml-viewer-source-xml") {
+  if (
+    node.nodeName === "div" &&
+    node.getAttrValue("id") === "webkit-xml-viewer-source-xml"
+  ) {
     return new XmlViewerPackage();
   } else {
     return null;
@@ -46,11 +49,9 @@ const isXmlViewer: Detector = (nodes) => {
 };
 
 const estimateFromContent: () => Package | null = () => {
-    const nodes = rootNodes();
+  const nodes = rootNodes();
 
-    return isDirect(nodes) || isRaw(nodes) || isXmlViewer(nodes);
-}
-
-export {
-    estimateFromContent,
+  return isDirect(nodes) || isRaw(nodes) || isXmlViewer(nodes);
 };
+
+export { estimateFromContent };

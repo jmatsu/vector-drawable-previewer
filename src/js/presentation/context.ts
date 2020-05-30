@@ -1,9 +1,5 @@
 export class Context {
-    public vecBase: Element | null = null;
+  public vecBase: Element | null = null;
 
-    constructor(
-        public readonly index: number,
-    ) {
-
-    }
+  constructor(public readonly index: number) {}
 }
