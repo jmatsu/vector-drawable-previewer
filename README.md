@@ -1,20 +1,36 @@
 ### VectorDrawable Previewer
 
-![icon](https://github.com/jmatsu/vector-drawable-previewer/blob/master/extension/package/icon_128.png)
+![icon](./public/icon_128.png)
 
-This is a Chrome extension for previewing vector drawable.
+This is a Chrome extension for previewing vector drawable. You can check vector drawable files on GitHub or your local.
+
+Please note that this extension requires the background script since v1.2.0
 
 <a href="https://chrome.google.com/webstore/detail/vdv/oidfgbojkfckgmkljhacgnckncpanbhm" target="_blank">
 <img src="https://developer.chrome.com/webstore/images/ChromeWebStore_Badge_v2_206x58.png">
 </a>
 
-### Supported mode
+## How this works
 
-+ Xml viewer
-+ Github one file preview
-+ Github diff files
-+ Github raw mode
-+ Local file
+- Show a SVG element which is based on a vector drawable text
+- `background script` watches URL changes and `content script` renders the SVG element.
+
+### Development
+
+```
+yarn install
+yarn watch
+```
+
+And then, load `dist/` from `chrome://extensions`.
+
+NOTE: `src/js` is the source directory.
+
+### Specifications
+
++ [About VectorDrawable](https://developer.android.com/guide/topics/graphics/vector-drawable-resources.html)
++ [VectorDrawable](https://developer.android.com/reference/android/graphics/drawable/VectorDrawable.html)
++ [VectorDrawableCompat](https://developer.android.com/reference/android/support/graphics/drawable/VectorDrawableCompat.html)
 
 ### Limitation
 
@@ -23,23 +39,11 @@ VectorDrawable Previewer doesn't support following
 + animated vector drawable
 + android resource references
 
-### Supported elements
+### Appendix
 
-See https://github.com/jmatsu/vector-drawable-previewer/blob/master/extension/src/const/svg_node.ts
-
-### How to develop
-
-1. Clone this repository.
-2. Edit some files...
-3. `cd extension; npm run compile` or `cd extension; npm run browserify` if compiled.
-4. Install or reload this extension
-
-### Specifications
-
-+ [About VectorDrawable](https://developer.android.com/guide/topics/graphics/vector-drawable-resources.html)
-+ [VectorDrawable](https://developer.android.com/reference/android/graphics/drawable/VectorDrawable.html)
-+ [VectorDrawableCompat](https://developer.android.com/reference/android/support/graphics/drawable/VectorDrawableCompat.html)
+- [Supported attributes](./src/js/const/svg_node.ts)
+- [Supported URLs](./src/js/background_helper.ts)
 
 ### License
 
-Under [MIT](https://github.com/jmatsu/vector-drawable-previewer/blob/master/LICENSE).
+Under [MIT](./LICENSE).
