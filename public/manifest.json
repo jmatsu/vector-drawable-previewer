@@ -11,7 +11,7 @@
       "48": "icon_48.png",
       "128": "icon_128.png" 
   },
-  "homepage_url": "https://jmatsu.github.io/vector-drawable-previewer/",
+  "homepage_url": "https://github.com/jmatsu/vector-drawable-previewer/",
 
   "background": {
     "scripts": ["js/background.js"],
