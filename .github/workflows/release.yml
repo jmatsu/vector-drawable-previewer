@@ -4,7 +4,7 @@ name: Run jobs on master
 on: 
   push:
     tags:
-      - v\d\.\d
+      - v\d\.\d.\d
 
 jobs:
   release:
