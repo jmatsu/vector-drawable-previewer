@@ -1,3 +1,5 @@
+/* disable-eslint: no-inner-declarations */
+
 export namespace VectorNode {
   export const enum Type {
     Root = 1,

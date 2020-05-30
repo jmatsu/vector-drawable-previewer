@@ -1,7 +1,7 @@
 import "./extension";
 
 import RemoteMessageType from "./remote_message_type";
-import { Id } from "./const/id";
+import * as Id from "./const/id";
 import { ShowSVGScenario } from "./scenario/show_svg_scenario";
 import {
   RawPackage,

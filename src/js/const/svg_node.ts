@@ -1,3 +1,5 @@
+/* disable-eslint: no-inner-declarations */
+
 // Only supported things are listed-up.
 export namespace SVGNode {
   export const enum Type {

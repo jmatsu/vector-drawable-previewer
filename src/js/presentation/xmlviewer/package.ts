@@ -3,6 +3,6 @@ import { SVGPresenter } from "./svg_presenter";
 import { VectorDrawableNodeRetriever } from "./vector_drawable_node_retriever";
 
 export class XmlViewerPackage implements PackageTemplate {
-    public retriever = new VectorDrawableNodeRetriever();
-    public presenter = new SVGPresenter();
+  public retriever = new VectorDrawableNodeRetriever();
+  public presenter = new SVGPresenter();
 }

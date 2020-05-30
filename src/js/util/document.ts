@@ -1,4 +1,4 @@
-import { Id } from "../const/id";
+import * as Id from "../const/id";
 
 export function getRootNodeList(): NodeList {
   return (document.body || document).childNodes;

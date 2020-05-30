@@ -1,4 +1,4 @@
-import * as GitHub from "../../../util/githubs";
+import { obtainFromFilePreview } from "../../../util/github";
 import { VectorDrawableNodeRetriever as Retriever } from "../../abstract_vector_drawable_node_retriever";
 import { Context } from "../../context";
 
@@ -10,7 +10,7 @@ export class VectorDrawableNodeRetriever extends Retriever {
       return null;
     }
 
-    const content = GitHub.obtainFromFilePreview(node);
+    const content = obtainFromFilePreview(node);
 
     if (!content) {
       return null;
