@@ -8,7 +8,7 @@
     "build": "yarn clean; webpack --config webpack/webpack.prod.js",
     "clean": "rimraf dist",
     "package": "yarn build && zip -r extension.zip dist/;",
-    "lint": "eslint src/js/*.ts src/js/**/*.ts",
+    "lint": "eslint src/js --ext .ts",
     "lint:format": "prettier --write src/js/*.ts src/js/**/*.ts"
   },
   "author": "Jumpei Matsuda",
