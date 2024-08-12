@@ -8,42 +8,28 @@ on:
 
 jobs:
   release:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
-
+    timeout-minutes: 5
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
       with:
-        node-version: '12.x'
-    - name: Get yarn cache directory path
-      id: yarn-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-    - uses: actions/cache@v1
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
+        node-version-file: '.node-version'
+        cache: true
+        cache-dependency-path: 'yarn.lock'
     - run: yarn install --frozen-lockfile
-      if: steps.yarn-cache.outputs.cache-hit != 'true'
     - run: yarn package
-    - name: Create Release
+
+    - name: Create a Release
       id: create_release
-      uses: actions/create-release@latest
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: softprops/action-gh-release@v2c062e08bd532815e2082a85e87e3ef29c3e6d191 # v2.0.8
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
+        make_latest: true
         draft: false
         prerelease: false
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./extension.zip
-        asset_name: extension.zip
-        asset_content_type: application/zip
+        fail_on_unmatched_files: true
+        generate_release_notes: true
+        files: |
+          ./extension.zip

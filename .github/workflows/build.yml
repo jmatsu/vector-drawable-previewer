@@ -1,0 +1,39 @@
+
+name: Build
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version-file: '.node-version'
+        cache: true
+        cache-dependency-path: 'yarn.lock'
+    - run: yarn install --frozen-lockfile
+    - run: yarn package
+
+  lint:
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version-file: '.node-version'
+        cache: true
+        cache-dependency-path: 'yarn.lock'
+    - run: yarn install --frozen-lockfile
+    - run: yarn lint
