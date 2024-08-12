@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "jquery": "^3.7.1",
-    "vector-drawable-svg": "^1.1.0"
+    "vector-drawable-svg": "patch:vector-drawable-svg@npm%3A1.1.0#~/.yarn/patches/vector-drawable-svg-npm-1.1.0-3c8ff6d389.patch"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.269",
@@ -52,5 +52,6 @@
     "webpack": "^5.93.0",
     "webpack-cli": "~5.1.4",
     "webpack-merge": "~6.0.1"
-  }
+  },
+  "packageManager": "yarn@4.4.0"
 }
