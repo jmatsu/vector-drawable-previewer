@@ -5,8 +5,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "watch": "webpack --config webpack/webpack.dev.js --watch",
-    "build": "yarn clean; webpack --config webpack/webpack.prod.js",
+    "watch": "webpack --config webpack.config.js --progress --mode=development --watch",
+    "build": "yarn clean; NODE_ENV=production webpack --config webpack.config.js --mode=production --progress",
     "clean": "rimraf dist",
     "package": "yarn build && zip -r extension.zip dist/;",
     "lint": "eslint",
