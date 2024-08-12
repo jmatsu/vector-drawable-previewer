@@ -1,11 +1,3 @@
-export function isGithubRepositoryPage() {
-  return /https?:\/\/github\.com\/[^/]+\/[^/]+.*/.test(location.href);
-}
-
-export function isGithubBlobPage(): boolean {
-  return /https?:\/\/github\.com\/[^/]+\/[^/]+\/blob\/.*$/.test(location.href);
-}
-
 export function getAjaxContainer() {
   return document.querySelector("#js-repo-pjax-container");
 }

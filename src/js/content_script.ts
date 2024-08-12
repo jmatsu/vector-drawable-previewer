@@ -5,8 +5,6 @@ import * as Id from "./const/id";
 import { ShowSVGScenario } from "./scenario/show_svg_scenario";
 import {
   RawPackage,
-  GithubBlobPackage,
-  GithubDiffPackage,
   UnknownPackage,
 } from "./presentation/presentation_component";
 
@@ -15,8 +13,6 @@ import { estimateFromContent } from "./content_script_helper";
 const estimateFromRemoteMessageType = (messageType: RemoteMessageType) => {
   const packages = {};
 
-  packages[RemoteMessageType.GitHubBlob] = new GithubBlobPackage();
-  packages[RemoteMessageType.GitHubDiff] = new GithubDiffPackage();
   packages[RemoteMessageType.GitHubRaw] = new RawPackage();
 
   return packages[messageType];
@@ -35,5 +31,7 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
     }
   }
 
-  sendResponse("ok");
+  if (sendResponse) {
+    sendResponse("ok");
+  }
 });

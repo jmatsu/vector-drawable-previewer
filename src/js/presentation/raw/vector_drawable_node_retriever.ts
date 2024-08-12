@@ -6,7 +6,7 @@ export class VectorDrawableNodeRetriever extends Retriever {
     const parser = new DOMParser();
     const doc = parser.parseFromString(
       document.body.childNodes[0].textContent || "",
-      "application/xml"
+      "application/xml",
     );
     const vdElement = doc.childNodes.findVectorDrawbleElement();
 

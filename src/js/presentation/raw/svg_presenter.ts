@@ -6,7 +6,7 @@ export class SVGPresenter extends Presenter {
   protected show(_: Context, svg: SVGElement): boolean {
     (document.body || document).insertBefore(
       createPreviewElement(svg),
-      getRootNodeList()[0]
+      getRootNodeList()[0],
     );
     return true;
   }
