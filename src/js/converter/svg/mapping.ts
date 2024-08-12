@@ -37,7 +37,7 @@ export function toRoot(vd: Element): SVGElement | null {
   svg.setAttrValue(svgAttrs.Height, height.replace("dp", "px"));
   svg.setAttrValue(
     svgAttrs.ViewBox,
-    `0 0 ${width.replace("dp", "")} ${height.replace("dp", "")}`
+    `0 0 ${width.replace("dp", "")} ${height.replace("dp", "")}`,
   );
 
   const g = createSVGElement("g");

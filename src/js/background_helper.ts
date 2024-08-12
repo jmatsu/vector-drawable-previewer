@@ -13,7 +13,7 @@ const isLocalFile: Detector = (url) => {
 const isGitHubBlob: Detector = (url) => {
   if (
     /https?:\/\/github\.com\/[^/]+\/[^/]+\/blob\/.+?\/res\/[^/]+\/[^.]+\.xml\??.*$/.test(
-      url
+      url,
     )
   ) {
     return RemoteMessageType.GitHubBlob;

@@ -66,13 +66,13 @@ interface NodeList {
 }
 
 NodeList.prototype.findVectorDrawbleElement = function (
-  nth?: number
+  nth?: number,
 ): Element | null {
   const depth = nth || 1;
 
   const findVDOnLayer = (
     items: NodeList[],
-    remaningDepth: number
+    remaningDepth: number,
   ): Element | null => {
     if (items.length === 0 || remaningDepth === 0) {
       return null;
