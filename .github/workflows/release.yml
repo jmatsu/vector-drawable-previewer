@@ -17,8 +17,11 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version-file: '.node-version'
-        cache: true
-        cache-dependency-path: 'yarn.lock'
+        cache: 'yarn'
+    - uses: actions/cache@v4
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-${{ hashFiles('.node-version', './yarn.lock') }}-node_modules
     - run: yarn install --frozen-lockfile
     - run: yarn package
 
