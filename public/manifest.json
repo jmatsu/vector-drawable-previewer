@@ -12,14 +12,12 @@
   },
   "homepage_url": "https://github.com/jmatsu/vector-drawable-previewer/",
   "background": {
-    "scripts": [
-      "js/background.js"
-    ],
-    "persistent": false
+    "service_worker": "js/background.js",
+    "type": "module"
   },
-  "web_accessible_resources": [
+  "content_scripts": [
     {
-      "resources": [
+      "js": [
         "js/content_script.js"
       ],
       "matches": [
@@ -32,7 +30,6 @@
     "tabs"
   ],
   "host_permissions": [
-    "https://github.com/",
     "https://raw.githubusercontent.com/"
   ],
   "optional_host_permissions": [
