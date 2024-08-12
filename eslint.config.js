@@ -10,7 +10,7 @@ import jestPlugin from "eslint-plugin-jest";
 export default [
   {
     files: ["eslint.config.js", "src/js/**/*.js"],
-    ignores: ["public/**", "dist/**"],
+    ignores: ["public/**", "dist/**", ".yarn/**"],
   },
   js.configs.recommended,
   eslintConfigPrettier,
