@@ -4,7 +4,7 @@ type Detector = (url: string) => RemoteMessageType | null;
 
 const isLocalFile: Detector = (url) => {
   if (/file?:\/\/\/.+\.xml\??.*$/.test(url)) {
-    return RemoteMessageType.GitHubBlob;
+    return RemoteMessageType.LocalFile;
   } else {
     return null;
   }
