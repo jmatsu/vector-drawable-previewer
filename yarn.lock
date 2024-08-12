@@ -498,6 +498,11 @@
   resolved "https://registry.yarnpkg.com/@webpack-cli/serve/-/serve-2.0.5.tgz#325db42395cd49fe6c14057f9a900e427df8810e"
   integrity sha512-lqaoKnRYBdo1UgDX8uF24AfGMifWK19TxPmM5FHc2vAGxrJ/qtyUyFBWoY1tISZdelsQ5fBcOusifo5o5wSJxQ==
 
+"@xmldom/xmldom@^0.8.6":
+  version "0.8.10"
+  resolved "https://registry.yarnpkg.com/@xmldom/xmldom/-/xmldom-0.8.10.tgz#a1337ca426aa61cef9fe15b5b28e340a72f6fa99"
+  integrity sha512-2WALfTl4xo2SkGCYRt6rDTFfk9R1czmBvUQy12gK2KuRKIpWEhcbbzy8EZXtz/jkRqHX8bFEc6FC1HjX4TUWYw==
+
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@xtuc/ieee754/-/ieee754-1.2.0.tgz#eef014a3145ae477a1cbc00cd1e552336dceb790"
@@ -2287,6 +2292,14 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
+vector-drawable-svg@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/vector-drawable-svg/-/vector-drawable-svg-1.1.0.tgz#4390f191d5c7dbe34928a63081a95b556017abcd"
+  integrity sha512-zJKfgY3BGRfj2QuORLyArlUlJb3jEyF2xusDWLL4h7YqfpoC2StB7pi/AI9nI/Vy4ZdovaTD1G+Wby1FA0u3lw==
+  dependencies:
+    "@xmldom/xmldom" "^0.8.6"
+    xml-formatter "^3.3.2"
+
 watchpack@^2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/watchpack/-/watchpack-2.4.1.tgz#29308f2cac150fa8e4c92f90e0ec954a9fed7fff"
@@ -2410,6 +2423,18 @@ wrap-ansi@^9.0.0:
     ansi-styles "^6.2.1"
     string-width "^7.0.0"
     strip-ansi "^7.1.0"
+
+xml-formatter@^3.3.2:
+  version "3.6.3"
+  resolved "https://registry.yarnpkg.com/xml-formatter/-/xml-formatter-3.6.3.tgz#7f0a023744567ffc196151403c4a02fce19de0d8"
+  integrity sha512-++x1TlRO1FRlQ82AZ4WnoCSufaI/PT/sycn4K8nRl4gnrNC1uYY2VV/67aALZ2m0Q4Q/BLj/L69K360Itw9NNg==
+  dependencies:
+    xml-parser-xo "^4.1.2"
+
+xml-parser-xo@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/xml-parser-xo/-/xml-parser-xo-4.1.2.tgz#076936f2a395901bf5120a79f2006978cb3746be"
+  integrity sha512-Z/DRB0ZAKj5vAQg++XsfQQKfT73Vfj5n5lKIVXobBDQEva6NHWUTxOA6OohJmEcpoy8AEqBmSGkXXAnFwt5qAA==
 
 yaml@~2.5.0:
   version "2.5.0"
