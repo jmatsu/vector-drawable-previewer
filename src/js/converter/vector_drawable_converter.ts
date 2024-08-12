@@ -6,7 +6,7 @@ export class VectorDrawableConverter {
   public convertToSVG(vd: Element): Promise<SVGElement> {
     return new SVGWalker().walk(
       new VectorNode.Data(VectorNode.Type.Root, vd),
-      SVGMapper
+      SVGMapper,
     );
   }
 }

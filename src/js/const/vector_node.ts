@@ -8,7 +8,10 @@ export namespace VectorNode {
   }
 
   export class Data {
-    constructor(public type: Type, public element: Element) {}
+    constructor(
+      public type: Type,
+      public element: Element,
+    ) {}
 
     public hasChildren(): boolean {
       return this.type === Type.Group;

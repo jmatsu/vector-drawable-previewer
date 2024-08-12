@@ -6,6 +6,7 @@ const RemoteMessageType = {
   OnCompleteLoad: "on-complete-load",
 } as const;
 
-type RemoteMessageType = typeof RemoteMessageType[keyof typeof RemoteMessageType];
+type RemoteMessageType =
+  (typeof RemoteMessageType)[keyof typeof RemoteMessageType];
 
 export default RemoteMessageType;

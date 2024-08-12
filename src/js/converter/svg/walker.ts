@@ -4,7 +4,7 @@ import { VectorNode } from "../../const/vector_node";
 export class Walker {
   public walk(
     data: VectorNode.Data,
-    applier: (data: VectorNode.Data) => SVGElement | null
+    applier: (data: VectorNode.Data) => SVGElement | null,
   ): Promise<SVGElement> {
     return new Promise((resolve, reject) => {
       const root = applier(data);
@@ -17,7 +17,7 @@ export class Walker {
         this.iterate(
           root.querySelector(`#${Id.topGroup}`),
           data.element.childNodes,
-          applier
+          applier,
         );
         return resolve(root);
       } catch (err) {
@@ -29,7 +29,7 @@ export class Walker {
   private iterate(
     parent: Node | null,
     nodes: NodeList,
-    applier: (data: VectorNode.Data) => SVGElement | null
+    applier: (data: VectorNode.Data) => SVGElement | null,
   ) {
     if (!parent) {
       return;
