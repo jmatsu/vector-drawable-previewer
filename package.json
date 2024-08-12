@@ -2,13 +2,14 @@
   "name": "vdp",
   "version": "1.2.0",
   "description": "A Chrome Extension can show the vector drawable when you open it",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "watch": "webpack --config webpack/webpack.dev.js --watch",
     "build": "yarn clean; webpack --config webpack/webpack.prod.js",
     "clean": "rimraf dist",
     "package": "yarn build && zip -r extension.zip dist/;",
-    "lint": "eslint src/js --ext .ts",
+    "lint": "eslint",
     "lint:format": "prettier --write src/js --ext .ts",
     "prepare": "husky",
     "precommit": "lint-staged"
